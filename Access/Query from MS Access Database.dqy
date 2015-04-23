@@ -1,0 +1,7 @@
+XLODBC
+1
+DSN=MS Access Database;DBQ=N:\Receiving and current inventory\NssmInventory.mdb;DefaultDir=N:\Receiving and current inventory;DriverId=25;FIL=MS Access;MaxBufferSize=2048;PageTimeout=5;
+SELECT Vendors.Field1  FROM `N:\Receiving and current inventory\NssmInventory.mdb`.Vendors Vendors  ORDER BY Vendors.Field1
+
+
+Field1
