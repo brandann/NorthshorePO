@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,42 +123,51 @@
             this.reloadbtn = new System.Windows.Forms.Button();
             this.savebtn = new System.Windows.Forms.Button();
             this.dataviewlist = new System.Windows.Forms.DataGridView();
-            this.nssmInventoryDataSet1 = new Inventory.NssmInventoryDataSet();
-            this.inventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.inventoryTableAdapter1 = new Inventory.NssmInventoryDataSetTableAdapters.InventoryTableAdapter();
-            this.inventoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.vendorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vendorsTableAdapter = new Inventory.NssmInventoryDataSetTableAdapters.VendorsTableAdapter();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colorTableAdapter1 = new Inventory.NssmInventoryDataSetTableAdapters.ColorTableAdapter();
-            this.materialBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.materialTableAdapter = new Inventory.NssmInventoryDataSetTableAdapters.MaterialTableAdapter();
-            this.purchasersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.purchasersTableAdapter = new Inventory.NssmInventoryDataSetTableAdapters.PurchasersTableAdapter();
-            this.thicknessBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.thicknessTableAdapter = new Inventory.NssmInventoryDataSetTableAdapters.ThicknessTableAdapter();
-            this.nssmInventoryDataSet11 = new Inventory.NssmInventoryDataSet1();
-            this.purchaseOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.purchaseOrderTableAdapter = new Inventory.NssmInventoryDataSet1TableAdapters.PurchaseOrderTableAdapter();
-            this.materialInventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.materialInventoryTableAdapter = new Inventory.NssmInventoryDataSet1TableAdapters.MaterialInventoryTableAdapter();
+            this.ItemPanel = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.hidecmb = new System.Windows.Forms.ComboBox();
+            this.cancelbtn = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.clearbtn = new System.Windows.Forms.Button();
+            this.itemsavebtn = new System.Windows.Forms.Button();
+            this.materialpanel = new System.Windows.Forms.Panel();
+            this.AverageLabel = new System.Windows.Forms.Label();
+            this.HistoryList = new System.Windows.Forms.ListBox();
+            this.gaugecmb = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.materialcmb = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.colorcmb = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.widthtxt = new System.Windows.Forms.TextBox();
+            this.sizeunitcmb = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.heighttxt = new System.Windows.Forms.TextBox();
+            this.statuscmb = new System.Windows.Forms.ComboBox();
+            this.categorycmb = new System.Windows.Forms.ComboBox();
+            this.descriptiontxt = new System.Windows.Forms.TextBox();
+            this.designationcmb = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.descriptionbtn = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.quantitytxt = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.unitpricetxt = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
             this.LookupResultPanel.SuspendLayout();
             this.InventoryViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataviewlist)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nssmInventoryDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendorsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.purchasersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thicknessBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nssmInventoryDataSet11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.purchaseOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialInventoryBindingSource)).BeginInit();
+            this.ItemPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.materialpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -957,7 +970,7 @@
             this.InventoryViewPanel.Controls.Add(this.reloadbtn);
             this.InventoryViewPanel.Controls.Add(this.savebtn);
             this.InventoryViewPanel.Controls.Add(this.dataviewlist);
-            this.InventoryViewPanel.Location = new System.Drawing.Point(4, 27);
+            this.InventoryViewPanel.Location = new System.Drawing.Point(21, 721);
             this.InventoryViewPanel.Name = "InventoryViewPanel";
             this.InventoryViewPanel.Size = new System.Drawing.Size(722, 756);
             this.InventoryViewPanel.TabIndex = 69;
@@ -980,11 +993,26 @@
             this.savebtn.TabIndex = 1;
             this.savebtn.Text = "Save";
             this.savebtn.UseVisualStyleBackColor = true;
-            this.savebtn.Click += new System.EventHandler(this.savebtn_Click);
             // 
             // dataviewlist
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataviewlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataviewlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataviewlist.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataviewlist.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataviewlist.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataviewlist.Location = new System.Drawing.Point(0, 0);
@@ -992,98 +1020,377 @@
             this.dataviewlist.Size = new System.Drawing.Size(722, 727);
             this.dataviewlist.TabIndex = 0;
             // 
-            // nssmInventoryDataSet1
+            // ItemPanel
             // 
-            this.nssmInventoryDataSet1.DataSetName = "NssmInventoryDataSet";
-            this.nssmInventoryDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.ItemPanel.Controls.Add(this.chart1);
+            this.ItemPanel.Controls.Add(this.hidecmb);
+            this.ItemPanel.Controls.Add(this.cancelbtn);
+            this.ItemPanel.Controls.Add(this.label22);
+            this.ItemPanel.Controls.Add(this.clearbtn);
+            this.ItemPanel.Controls.Add(this.itemsavebtn);
+            this.ItemPanel.Controls.Add(this.materialpanel);
+            this.ItemPanel.Controls.Add(this.statuscmb);
+            this.ItemPanel.Controls.Add(this.categorycmb);
+            this.ItemPanel.Controls.Add(this.descriptiontxt);
+            this.ItemPanel.Controls.Add(this.designationcmb);
+            this.ItemPanel.Controls.Add(this.label28);
+            this.ItemPanel.Controls.Add(this.label29);
+            this.ItemPanel.Controls.Add(this.label30);
+            this.ItemPanel.Controls.Add(this.descriptionbtn);
+            this.ItemPanel.Controls.Add(this.label31);
+            this.ItemPanel.Controls.Add(this.label32);
+            this.ItemPanel.Controls.Add(this.quantitytxt);
+            this.ItemPanel.Controls.Add(this.textBox1);
+            this.ItemPanel.Controls.Add(this.label33);
+            this.ItemPanel.Controls.Add(this.label34);
+            this.ItemPanel.Controls.Add(this.unitpricetxt);
+            this.ItemPanel.Location = new System.Drawing.Point(4, 27);
+            this.ItemPanel.Name = "ItemPanel";
+            this.ItemPanel.Size = new System.Drawing.Size(722, 756);
+            this.ItemPanel.TabIndex = 48;
+            this.ItemPanel.Visible = false;
             // 
-            // inventoryBindingSource
+            // chart1
             // 
-            this.inventoryBindingSource.DataMember = "Inventory";
-            this.inventoryBindingSource.DataSource = this.nssmInventoryDataSet1;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(23, 244);
+            this.chart1.Name = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(309, 303);
+            this.chart1.TabIndex = 94;
+            this.chart1.Text = "chart1";
             // 
-            // inventoryTableAdapter1
+            // hidecmb
             // 
-            this.inventoryTableAdapter1.ClearBeforeFill = true;
+            this.hidecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hidecmb.FormattingEnabled = true;
+            this.hidecmb.Location = new System.Drawing.Point(452, 723);
+            this.hidecmb.Name = "hidecmb";
+            this.hidecmb.Size = new System.Drawing.Size(85, 21);
+            this.hidecmb.TabIndex = 73;
+            this.hidecmb.Visible = false;
             // 
-            // inventoryBindingSource1
+            // cancelbtn
             // 
-            this.inventoryBindingSource1.DataMember = "Inventory";
-            this.inventoryBindingSource1.DataSource = this.nssmInventoryDataSet1;
+            this.cancelbtn.Location = new System.Drawing.Point(8, 721);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(90, 23);
+            this.cancelbtn.TabIndex = 93;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = true;
+            this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
             // 
-            // vendorsBindingSource
+            // label22
             // 
-            this.vendorsBindingSource.DataMember = "Vendors";
-            this.vendorsBindingSource.DataSource = this.nssmInventoryDataSet1;
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(367, 726);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(81, 13);
+            this.label22.TabIndex = 72;
+            this.label22.Text = "Hide By Vendor";
+            this.label22.Visible = false;
             // 
-            // vendorsTableAdapter
+            // clearbtn
             // 
-            this.vendorsTableAdapter.ClearBeforeFill = true;
+            this.clearbtn.Location = new System.Drawing.Point(104, 721);
+            this.clearbtn.Name = "clearbtn";
+            this.clearbtn.Size = new System.Drawing.Size(90, 23);
+            this.clearbtn.TabIndex = 92;
+            this.clearbtn.Text = "Clear";
+            this.clearbtn.UseVisualStyleBackColor = true;
+            this.clearbtn.Click += new System.EventHandler(this.clearbtn_Click);
             // 
-            // colorBindingSource
+            // itemsavebtn
             // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.nssmInventoryDataSet1;
+            this.itemsavebtn.Location = new System.Drawing.Point(623, 721);
+            this.itemsavebtn.Name = "itemsavebtn";
+            this.itemsavebtn.Size = new System.Drawing.Size(90, 23);
+            this.itemsavebtn.TabIndex = 79;
+            this.itemsavebtn.Text = "Save";
+            this.itemsavebtn.UseVisualStyleBackColor = true;
+            this.itemsavebtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // colorTableAdapter1
+            // materialpanel
             // 
-            this.colorTableAdapter1.ClearBeforeFill = true;
+            this.materialpanel.Controls.Add(this.AverageLabel);
+            this.materialpanel.Controls.Add(this.HistoryList);
+            this.materialpanel.Controls.Add(this.gaugecmb);
+            this.materialpanel.Controls.Add(this.label23);
+            this.materialpanel.Controls.Add(this.materialcmb);
+            this.materialpanel.Controls.Add(this.label24);
+            this.materialpanel.Controls.Add(this.colorcmb);
+            this.materialpanel.Controls.Add(this.label25);
+            this.materialpanel.Controls.Add(this.label26);
+            this.materialpanel.Controls.Add(this.widthtxt);
+            this.materialpanel.Controls.Add(this.sizeunitcmb);
+            this.materialpanel.Controls.Add(this.label27);
+            this.materialpanel.Controls.Add(this.heighttxt);
+            this.materialpanel.Enabled = false;
+            this.materialpanel.Location = new System.Drawing.Point(354, 17);
+            this.materialpanel.Name = "materialpanel";
+            this.materialpanel.Size = new System.Drawing.Size(337, 632);
+            this.materialpanel.TabIndex = 91;
             // 
-            // materialBindingSource
+            // AverageLabel
             // 
-            this.materialBindingSource.DataMember = "Material";
-            this.materialBindingSource.DataSource = this.nssmInventoryDataSet1;
+            this.AverageLabel.AutoSize = true;
+            this.AverageLabel.Location = new System.Drawing.Point(95, 540);
+            this.AverageLabel.Name = "AverageLabel";
+            this.AverageLabel.Size = new System.Drawing.Size(111, 13);
+            this.AverageLabel.TabIndex = 48;
+            this.AverageLabel.Text = "Average Material Cost";
             // 
-            // materialTableAdapter
+            // HistoryList
             // 
-            this.materialTableAdapter.ClearBeforeFill = true;
+            this.HistoryList.FormattingEnabled = true;
+            this.HistoryList.Location = new System.Drawing.Point(96, 227);
+            this.HistoryList.Name = "HistoryList";
+            this.HistoryList.Size = new System.Drawing.Size(229, 303);
+            this.HistoryList.TabIndex = 94;
             // 
-            // purchasersBindingSource
+            // gaugecmb
             // 
-            this.purchasersBindingSource.DataMember = "Purchasers";
-            this.purchasersBindingSource.DataSource = this.nssmInventoryDataSet1;
+            this.gaugecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gaugecmb.FormattingEnabled = true;
+            this.gaugecmb.Location = new System.Drawing.Point(96, 63);
+            this.gaugecmb.Name = "gaugecmb";
+            this.gaugecmb.Size = new System.Drawing.Size(229, 21);
+            this.gaugecmb.TabIndex = 70;
+            this.gaugecmb.SelectedIndexChanged += new System.EventHandler(this.gaugecmb_SelectedIndexChanged);
             // 
-            // purchasersTableAdapter
+            // label23
             // 
-            this.purchasersTableAdapter.ClearBeforeFill = true;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(13, 39);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(44, 13);
+            this.label23.TabIndex = 58;
+            this.label23.Text = "Material";
             // 
-            // thicknessBindingSource
+            // materialcmb
             // 
-            this.thicknessBindingSource.DataMember = "Thickness";
-            this.thicknessBindingSource.DataSource = this.nssmInventoryDataSet1;
+            this.materialcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.materialcmb.FormattingEnabled = true;
+            this.materialcmb.Location = new System.Drawing.Point(96, 36);
+            this.materialcmb.Name = "materialcmb";
+            this.materialcmb.Size = new System.Drawing.Size(229, 21);
+            this.materialcmb.TabIndex = 69;
+            this.materialcmb.SelectedIndexChanged += new System.EventHandler(this.materialcmb_SelectedIndexChanged_1);
             // 
-            // thicknessTableAdapter
+            // label24
             // 
-            this.thicknessTableAdapter.ClearBeforeFill = true;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(13, 66);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(39, 13);
+            this.label24.TabIndex = 56;
+            this.label24.Text = "Gauge";
             // 
-            // nssmInventoryDataSet11
+            // colorcmb
             // 
-            this.nssmInventoryDataSet11.DataSetName = "NssmInventoryDataSet1";
-            this.nssmInventoryDataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.colorcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorcmb.FormattingEnabled = true;
+            this.colorcmb.Location = new System.Drawing.Point(96, 126);
+            this.colorcmb.Name = "colorcmb";
+            this.colorcmb.Size = new System.Drawing.Size(229, 21);
+            this.colorcmb.TabIndex = 41;
+            this.colorcmb.SelectedIndexChanged += new System.EventHandler(this.colorcmb_SelectedIndexChanged);
             // 
-            // purchaseOrderBindingSource
+            // label25
             // 
-            this.purchaseOrderBindingSource.DataMember = "PurchaseOrder";
-            this.purchaseOrderBindingSource.DataSource = this.nssmInventoryDataSet11;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(13, 129);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 13);
+            this.label25.TabIndex = 60;
+            this.label25.Text = "Color";
             // 
-            // purchaseOrderTableAdapter
+            // label26
             // 
-            this.purchaseOrderTableAdapter.ClearBeforeFill = true;
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(13, 156);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(35, 13);
+            this.label26.TabIndex = 62;
+            this.label26.Text = "Width";
             // 
-            // materialInventoryBindingSource
+            // widthtxt
             // 
-            this.materialInventoryBindingSource.DataMember = "MaterialInventory";
-            this.materialInventoryBindingSource.DataSource = this.nssmInventoryDataSet11;
+            this.widthtxt.Location = new System.Drawing.Point(96, 153);
+            this.widthtxt.Name = "widthtxt";
+            this.widthtxt.Size = new System.Drawing.Size(129, 20);
+            this.widthtxt.TabIndex = 63;
+            this.widthtxt.TextChanged += new System.EventHandler(this.widthtxt_TextChanged);
             // 
-            // materialInventoryTableAdapter
+            // sizeunitcmb
             // 
-            this.materialInventoryTableAdapter.ClearBeforeFill = true;
+            this.sizeunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sizeunitcmb.FormattingEnabled = true;
+            this.sizeunitcmb.Location = new System.Drawing.Point(240, 179);
+            this.sizeunitcmb.Name = "sizeunitcmb";
+            this.sizeunitcmb.Size = new System.Drawing.Size(85, 21);
+            this.sizeunitcmb.TabIndex = 40;
+            this.sizeunitcmb.SelectedIndexChanged += new System.EventHandler(this.sizeunitcmb_SelectedIndexChanged);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(13, 183);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(38, 13);
+            this.label27.TabIndex = 65;
+            this.label27.Text = "Height";
+            // 
+            // heighttxt
+            // 
+            this.heighttxt.Location = new System.Drawing.Point(96, 180);
+            this.heighttxt.Name = "heighttxt";
+            this.heighttxt.Size = new System.Drawing.Size(129, 20);
+            this.heighttxt.TabIndex = 66;
+            this.heighttxt.TextChanged += new System.EventHandler(this.heighttxt_TextChanged);
+            // 
+            // statuscmb
+            // 
+            this.statuscmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.statuscmb.FormattingEnabled = true;
+            this.statuscmb.Location = new System.Drawing.Point(105, 198);
+            this.statuscmb.Name = "statuscmb";
+            this.statuscmb.Size = new System.Drawing.Size(227, 21);
+            this.statuscmb.TabIndex = 90;
+            // 
+            // categorycmb
+            // 
+            this.categorycmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categorycmb.FormattingEnabled = true;
+            this.categorycmb.Location = new System.Drawing.Point(105, 171);
+            this.categorycmb.Name = "categorycmb";
+            this.categorycmb.Size = new System.Drawing.Size(227, 21);
+            this.categorycmb.TabIndex = 89;
+            // 
+            // descriptiontxt
+            // 
+            this.descriptiontxt.Location = new System.Drawing.Point(105, 14);
+            this.descriptiontxt.Name = "descriptiontxt";
+            this.descriptiontxt.Size = new System.Drawing.Size(188, 20);
+            this.descriptiontxt.TabIndex = 77;
+            // 
+            // designationcmb
+            // 
+            this.designationcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.designationcmb.FormattingEnabled = true;
+            this.designationcmb.Location = new System.Drawing.Point(105, 144);
+            this.designationcmb.Name = "designationcmb";
+            this.designationcmb.Size = new System.Drawing.Size(227, 21);
+            this.designationcmb.TabIndex = 78;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(20, 199);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 13);
+            this.label28.TabIndex = 88;
+            this.label28.Text = "Status";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(20, 17);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(60, 13);
+            this.label29.TabIndex = 75;
+            this.label29.Text = "Description";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(20, 173);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(49, 13);
+            this.label30.TabIndex = 87;
+            this.label30.Text = "Category";
+            // 
+            // descriptionbtn
+            // 
+            this.descriptionbtn.Location = new System.Drawing.Point(299, 11);
+            this.descriptionbtn.Name = "descriptionbtn";
+            this.descriptionbtn.Size = new System.Drawing.Size(33, 23);
+            this.descriptionbtn.TabIndex = 76;
+            this.descriptionbtn.Text = "Set";
+            this.descriptionbtn.UseVisualStyleBackColor = true;
+            this.descriptionbtn.Click += new System.EventHandler(this.descriptionbtn_Click_1);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(20, 147);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(63, 13);
+            this.label31.TabIndex = 86;
+            this.label31.Text = "Designation";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(20, 57);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(46, 13);
+            this.label32.TabIndex = 80;
+            this.label32.Text = "Quantity";
+            // 
+            // quantitytxt
+            // 
+            this.quantitytxt.Location = new System.Drawing.Point(105, 54);
+            this.quantitytxt.Name = "quantitytxt";
+            this.quantitytxt.Size = new System.Drawing.Size(227, 20);
+            this.quantitytxt.TabIndex = 81;
+            this.quantitytxt.TextChanged += new System.EventHandler(this.quantitytxt_TextChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(105, 106);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(227, 20);
+            this.textBox1.TabIndex = 85;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(20, 83);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(53, 13);
+            this.label33.TabIndex = 82;
+            this.label33.Text = "Unit Price";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(20, 109);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(78, 13);
+            this.label34.TabIndex = 84;
+            this.label34.Text = "Total Ammount";
+            // 
+            // unitpricetxt
+            // 
+            this.unitpricetxt.Location = new System.Drawing.Point(105, 80);
+            this.unitpricetxt.Name = "unitpricetxt";
+            this.unitpricetxt.Size = new System.Drawing.Size(227, 20);
+            this.unitpricetxt.TabIndex = 83;
+            this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1409, 793);
+            this.Controls.Add(this.ItemPanel);
             this.Controls.Add(this.InventoryViewPanel);
             this.Controls.Add(this.lookupPanel);
             this.Controls.Add(this.POPanel);
@@ -1103,17 +1410,11 @@
             this.LookupResultPanel.PerformLayout();
             this.InventoryViewPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataviewlist)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nssmInventoryDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendorsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.purchasersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thicknessBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nssmInventoryDataSet11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.purchaseOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialInventoryBindingSource)).EndInit();
+            this.ItemPanel.ResumeLayout(false);
+            this.ItemPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.materialpanel.ResumeLayout(false);
+            this.materialpanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1121,9 +1422,6 @@
 
         #endregion
 
-        private NssmInventoryDataSet nssmInventoryDataSet;
-        private NssmInventoryDataSetTableAdapters.InventoryTableAdapter inventoryTableAdapter;
-        private NssmInventoryDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
@@ -1204,26 +1502,9 @@
         private System.Windows.Forms.Panel LookupResultPanel;
         private System.Windows.Forms.Button searchbtn;
         private System.Windows.Forms.Panel InventoryViewPanel;
-        private NssmInventoryDataSet nssmInventoryDataSet1;
-        private System.Windows.Forms.BindingSource inventoryBindingSource;
-        private NssmInventoryDataSetTableAdapters.InventoryTableAdapter inventoryTableAdapter1;
-        private System.Windows.Forms.BindingSource inventoryBindingSource1;
-        private System.Windows.Forms.BindingSource vendorsBindingSource;
-        private NssmInventoryDataSetTableAdapters.VendorsTableAdapter vendorsTableAdapter;
-        private System.Windows.Forms.BindingSource colorBindingSource;
-        private NssmInventoryDataSetTableAdapters.ColorTableAdapter colorTableAdapter1;
-        private System.Windows.Forms.BindingSource materialBindingSource;
-        private NssmInventoryDataSetTableAdapters.MaterialTableAdapter materialTableAdapter;
-        private System.Windows.Forms.BindingSource purchasersBindingSource;
-        private NssmInventoryDataSetTableAdapters.PurchasersTableAdapter purchasersTableAdapter;
-        private System.Windows.Forms.BindingSource thicknessBindingSource;
-        private NssmInventoryDataSetTableAdapters.ThicknessTableAdapter thicknessTableAdapter;
         private System.Windows.Forms.DataGridView dataviewlist;
         private System.Windows.Forms.Button reloadbtn;
         private System.Windows.Forms.Button savebtn;
-        private NssmInventoryDataSet1 nssmInventoryDataSet11;
-        private System.Windows.Forms.BindingSource purchaseOrderBindingSource;
-        private NssmInventoryDataSet1TableAdapters.PurchaseOrderTableAdapter purchaseOrderTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrdersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem1;
@@ -1231,8 +1512,42 @@
         private System.Windows.Forms.ToolStripMenuItem materialsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem thicknessToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem purchasersToolStripMenuItem1;
-        private System.Windows.Forms.BindingSource materialInventoryBindingSource;
-        private NssmInventoryDataSet1TableAdapters.MaterialInventoryTableAdapter materialInventoryTableAdapter;
+        private System.Windows.Forms.Panel ItemPanel;
+        private System.Windows.Forms.ComboBox hidecmb;
+        private System.Windows.Forms.Button cancelbtn;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button clearbtn;
+        private System.Windows.Forms.Button itemsavebtn;
+        private System.Windows.Forms.Panel materialpanel;
+        private System.Windows.Forms.Label AverageLabel;
+        private System.Windows.Forms.ListBox HistoryList;
+        private System.Windows.Forms.ComboBox gaugecmb;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox materialcmb;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox colorcmb;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox widthtxt;
+        private System.Windows.Forms.ComboBox sizeunitcmb;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox heighttxt;
+        private System.Windows.Forms.ComboBox statuscmb;
+        private System.Windows.Forms.ComboBox categorycmb;
+        private System.Windows.Forms.TextBox descriptiontxt;
+        private System.Windows.Forms.ComboBox designationcmb;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button descriptionbtn;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox quantitytxt;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox unitpricetxt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

@@ -7,10 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data.OleDb;
-using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel; 
 
 namespace Inventory
 {
@@ -20,32 +16,47 @@ namespace Inventory
         private string PurchaseOrderTemplateFileName = "PurchaseOrderTemplate.xlsx";
         private string PurchaseOrderTemplateLocation = @"N:\Receiving and current inventory\InventoryData\";
         private string PurchaseOrderDatabaseCopySave = @"N:\Receiving and current inventory\InventoryData\PurchaseOrders\";
-        private OleDbConnection connection = new OleDbConnection();
         private List<Purchaser> purchasers;
         private List<InventoryOrderItem> OrderItems;
         private List<PurchaseOrderItem> PurchaseOrderResults;
         private string ponum;
         private string initials;
-        private static Excel.Workbook MyBook = null;
-        private static Excel.Application MyApp = null;
-        private static Excel.Worksheet MySheet = null;
+        
         public enum SearchByTerms { PONumber, ProjectNumber, MaterialType, MaterialColor}
         public enum DataViewType { Inventory, Vendor, Color, Material, Thickness, Purchaser, PurchseOrder }
         private DataViewType currentDataType;
+        private DatabaseController databaseController;
+
+        private InventoryOrderItem item;
+        private bool newItem;
+        private int item_index;
+        List<MaterialTable> materials;
         #endregion
 
         #region constructor
         public Form1()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\NssmInventory.mdb; Persist Security Info=False;";
-
+            databaseController = new DatabaseController();
+            
             this.Size = new Size(760, 830);
             POPanel.Location = new System.Drawing.Point(12, 35);
             lookupPanel.Location = new System.Drawing.Point(12, 35);
             InventoryViewPanel.Location = new System.Drawing.Point(12, 35);
+            ItemPanel.Location = new System.Drawing.Point(12, 35);
 
             reset();
+
+            fillMaterialComboBox();
+            fillGaugeComboBox();
+            fillColorComboBox();
+            fillSizeUnitComboBox();
+            fillDesignationComboBox();
+            fillCategoryComboBox();
+            fillStatusComboBox();
+
+            hidecmb.Items.Add("YES");
+            hidecmb.Items.Add("NO");
         }
 
         #region init
@@ -55,6 +66,7 @@ namespace Inventory
             lookupPanel.Visible = false;
             LookupResultPanel.Visible = false;
             InventoryViewPanel.Visible = false;
+            ItemPanel.Visible = false;
         }
 
         public void initNewPO()
@@ -148,75 +160,27 @@ namespace Inventory
 
         private void fillVendorComboBox()
         {
-            try
+            List<VendorsTable> vendors = databaseController.GetVendors();
+            for(int i = 0; i < vendors.Count; i++)
             {
-                connection.Open();
-                var command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select VENDOR from Vendors";
-                var reader = command.ExecuteReader();
-
-                List<string> vendors = new List<string>();
-                while (reader.Read())
-                {
-                    vendors.Add(reader.GetString(0));
-                }
-
-                vendors.Sort();
-
-                for (int i = 0; i < vendors.Count; i++ )
-                {
-                    vendorcmb.Items.Add(vendors[i]);
-                }
-
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.ToString());
-            }
-            finally
-            {
-                connection.Close();
+                vendorcmb.Items.Add(vendors[i].vendor);
             }
         }
 
         private void fillPurchaserComboBox()
         {
             purchasers = new List<Purchaser>();
-            try
+            List<PurchasersTable> p = databaseController.GetPurchasers();
+            for (int i = 0; i < p.Count; i++)
             {
-                connection.Open();
-                var command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select * from Purchasers";
-                var reader = command.ExecuteReader();
-
-                List<string> vendors = new List<string>();
-                while (reader.Read())
+                if(p[i].isActive)
                 {
-                    Purchaser p = new Purchaser();
-                    p.name = reader.GetString(2) + ", " + reader.GetString(1);
-                    p.initials = reader.GetString(3);
-                    purchasers.Add(p);
+                    Purchaser purchaser = new Purchaser();
+                    purchaser.name = p[i].name_last + ", " + p[i].name_first;
+                    purchaser.initials = p[i].initials;
+                    purchasers.Add(purchaser);
+                    purchasercmb.Items.Add(p[i].name_last + ", " + p[i].name_first);
                 }
-
-                purchasers.Sort();
-
-                for (int i = 0; i < purchasers.Count; i++)
-                {
-                    purchasercmb.Items.Add(purchasers[i].ToString());
-                }
-
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.ToString());
-            }
-            finally
-            {
-                connection.Close();
             }
         }
 
@@ -231,22 +195,6 @@ namespace Inventory
         #region Events
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet11.MaterialInventory' table. You can move, or remove it, as needed.
-            this.materialInventoryTableAdapter.Fill(this.nssmInventoryDataSet11.MaterialInventory);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet11.PurchaseOrder' table. You can move, or remove it, as needed.
-            this.purchaseOrderTableAdapter.Fill(this.nssmInventoryDataSet11.PurchaseOrder);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Thickness' table. You can move, or remove it, as needed.
-            this.thicknessTableAdapter.Fill(this.nssmInventoryDataSet1.Thickness);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Purchasers' table. You can move, or remove it, as needed.
-            this.purchasersTableAdapter.Fill(this.nssmInventoryDataSet1.Purchasers);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Material' table. You can move, or remove it, as needed.
-            this.materialTableAdapter.Fill(this.nssmInventoryDataSet1.Material);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Color' table. You can move, or remove it, as needed.
-            this.colorTableAdapter1.Fill(this.nssmInventoryDataSet1.Color);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Vendors' table. You can move, or remove it, as needed.
-            this.vendorsTableAdapter.Fill(this.nssmInventoryDataSet1.Vendors);
-            // TODO: This line of code loads data into the 'nssmInventoryDataSet1.Inventory' table. You can move, or remove it, as needed.
-            this.inventoryTableAdapter1.Fill(this.nssmInventoryDataSet1.Inventory);
 
         }
 
@@ -254,9 +202,7 @@ namespace Inventory
         {
             if(orderitemlist.SelectedIndex != -1)
             {
-                var form = new Form2();
-                form.Show();
-                form.EditItem(OrderItems[orderitemlist.SelectedIndex], this, orderitemlist.SelectedIndex);
+                EditItem(OrderItems[orderitemlist.SelectedIndex], this, orderitemlist.SelectedIndex);
             }
             else
             {
@@ -267,16 +213,12 @@ namespace Inventory
 
         private void addmaterial_Click(object sender, EventArgs e)
         {
-            var form = new Form2();
-            form.Show();
-            form.NewItem(true, this);
+            NewItem(true, this);
         }
 
         private void addother_Click(object sender, EventArgs e)
         {
-            var form = new Form2();
-            form.Show();
-            form.NewItem(false, this);
+            NewItem(false, this);
         }
 
         private void submitbtn_Click(object sender, EventArgs e)
@@ -419,31 +361,31 @@ namespace Inventory
             switch (t)
             {
                 case (DataViewType.Color):
-                    dataviewlist.DataSource = colorBindingSource;
+                    //dataviewlist.DataSource = colorBindingSource;
                     currentDataType = DataViewType.Color;
                     break;
                 case (DataViewType.Purchaser):
-                    dataviewlist.DataSource = purchasersBindingSource;
+                    //dataviewlist.DataSource = purchasersBindingSource;
                     currentDataType = DataViewType.Purchaser;
                     break;
                 case (DataViewType.Thickness):
-                    dataviewlist.DataSource = thicknessBindingSource;
+                    //dataviewlist.DataSource = thicknessBindingSource;
                     currentDataType = DataViewType.Thickness;
                     break;
                 case (DataViewType.Material):
-                    dataviewlist.DataSource = materialBindingSource;
+                    //dataviewlist.DataSource = materialBindingSource;
                     currentDataType = DataViewType.Material;
                     break;
                 case (DataViewType.Vendor):
-                    dataviewlist.DataSource = vendorsBindingSource;
+                    //dataviewlist.DataSource = vendorsBindingSource;
                     currentDataType = DataViewType.Vendor;
                     break;
                 case (DataViewType.PurchseOrder):
-                    dataviewlist.DataSource = purchaseOrderBindingSource;
+                    //dataviewlist.DataSource = purchaseOrderBindingSource;
                     currentDataType = DataViewType.PurchseOrder;
                     break;
                 case (DataViewType.Inventory):
-                    dataviewlist.DataSource = materialInventoryBindingSource;
+                    //dataviewlist.DataSource = materialInventoryBindingSource;
                     currentDataType = DataViewType.Inventory;
                     break;
             }
@@ -481,7 +423,7 @@ namespace Inventory
         }
 
         private void SubmitPO()
-        {
+        {/*
             string queue = buildQueuePO();
             purchasers = new List<Purchaser>();
             try
@@ -502,7 +444,7 @@ namespace Inventory
             finally
             {
                 connection.Close();
-            }
+            }*/
         }
 
         private string buildQueuePO()
@@ -543,7 +485,7 @@ namespace Inventory
         }
 
         private void SubmitMaterialItem(InventoryOrderItem ioi)
-        {
+        {/*
             string queue = buildQueueMaterial(ioi);
             purchasers = new List<Purchaser>();
             try
@@ -564,7 +506,7 @@ namespace Inventory
             finally
             {
                 connection.Close();
-            }
+            }*/
         }
 
         private string buildQueueMaterial(InventoryOrderItem ioi)
@@ -712,7 +654,7 @@ namespace Inventory
         }
         
         private bool SavePO()
-        {
+        {/*
             string databasefilename = PurchaseOrderDatabaseCopySave + PoNumbertxt.Text + ".xlsx";
             System.IO.File.Copy(PurchaseOrderTemplateLocation + PurchaseOrderTemplateFileName, databasefilename);
 
@@ -776,9 +718,9 @@ namespace Inventory
                 {
                     System.IO.File.Copy(databasefilename, saveFileDialog1.FileName);
                 }
-            }
+            }*/
 
-            return true;
+            return false;
         }
 
         private class Purchaser : IComparable<Purchaser>
@@ -822,39 +764,302 @@ namespace Inventory
         }
         #endregion
 
-        private void savebtn_Click(object sender, EventArgs e)
-        {
-            SaveDataChanges(currentDataType);
-        }
+        //----------------------------------------------------------------------------
+        //
+        // ITEM PANEL
+        //
+        //----------------------------------------------------------------------------
 
-        private void SaveDataChanges(DataViewType current)
+        #region init
+        public void NewItem(bool isMaterial, Form1 parent)
         {
-            /*
-            switch(current)
+            reset();
+            ItemPanel.Visible = true;
+            item = new InventoryOrderItem();
+            item.isMaterial = isMaterial;
+            //init(item, parent);
+
+            if (item != null && item.isMaterial)
             {
-                case(DataViewType.Inventory):
-                    dataAdapter.Update((System.Data.DataTable)inventoryBindingSource.DataSource);
-                    break;
-                case (DataViewType.Vendor):
-                    dataAdapter.Update((System.Data.DataTable)vendorsBindingSource.DataSource);
-                    break;
-                case (DataViewType.Color):
-                    dataAdapter.Update((System.Data.DataTable)colorBindingSource.DataSource);
-                    break;
-                case (DataViewType.Material):
-                    dataAdapter.Update((System.Data.DataTable)materialBindingSource.DataSource);
-                    break;
-                case (DataViewType.Thickness):
-                    dataAdapter.Update((System.Data.DataTable)thicknessBindingSource.DataSource);
-                    break;
-                case (DataViewType.Purchaser):
-                    dataAdapter.Update((System.Data.DataTable)purchasersBindingSource.DataSource);
-                    break;
+                categorycmb.SelectedItem = "Material";
             }
-            */
+            statuscmb.SelectedItem = "Shipping/Receiving";
+
+            newItem = true;
+            item_index = -1;
+
+            materialpanel.Enabled = item.isMaterial;
+
+            sizeunitcmb.SelectedItem = "IN";
+
+            hidecmb.SelectedItem = "NO";
         }
 
-        
+        public void EditItem(InventoryOrderItem ioi, Form1 parent, int index)
+        {
+            reset();
+            ItemPanel.Visible = true;
+            item = ioi;
+            init(item);
+
+            newItem = false;
+            item_index = index;
+        }
+
+        private void init(InventoryOrderItem ioi)
+        {
+            this.item = ioi;
+            descriptiontxt.Text = item.description;
+            quantitytxt.Text = item.quantity;
+            //unittxt.Text = item.unit;
+            unitpricetxt.Text = item.unit_price.ToString();
+            totaltxt.Text = item.total.ToString();
+
+            designationcmb.SelectedItem = item.designation;
+            categorycmb.SelectedItem = item.category;
+            statuscmb.SelectedItem = item.status;
+
+            materialpanel.Enabled = item.isMaterial;
+            materialcmb.SelectedText = item.material;
+            gaugecmb.SelectedItem = item.gauge;
+            colorcmb.SelectedItem = item.color;
+            widthtxt.Text = item.width.ToString();
+            heighttxt.Text = item.height.ToString();
+            sizeunitcmb.SelectedItem = item.size_unit;
+        }
+
+        private void fillMaterialComboBox()
+        {
+            DatabaseController dc = new DatabaseController();
+            materials = dc.GetMaterial();
+
+            for (int i = 0; i < materials.Count; i++)
+            {
+                materialcmb.Items.Add(materials[i].material_type);
+            }
+        }
+
+        private void fillGaugeComboBox()
+        {
+            DatabaseController dc = new DatabaseController();
+            List<ThicknessTable> gauges = dc.GetThickness();
+
+            for (int i = 0; i < gauges.Count; i++)
+            {
+                gaugecmb.Items.Add(gauges[i].thickness + " " + gauges[i].type.ToLower());
+            }
+        }
+
+        private void fillColorComboBox()
+        {
+            DatabaseController dc = new DatabaseController();
+            List<ColorTable> colors = dc.GetColor();
+
+            for (int i = 0; i < colors.Count; i++)
+            {
+                colorcmb.Items.Add(colors[i].color);
+            }
+        }
+
+        private void fillSizeUnitComboBox()
+        {
+            sizeunitcmb.Items.Add("IN");
+            sizeunitcmb.Items.Add("FT");
+            sizeunitcmb.Items.Add("MM");
+            sizeunitcmb.Items.Add("CM");
+            sizeunitcmb.Sorted = true;
+        }
+
+        private void fillDesignationComboBox()
+        {
+            designationcmb.Items.Add("Northshore");
+            designationcmb.Items.Add("Northclad");
+            designationcmb.Items.Add("Stock/Shop");
+            designationcmb.Sorted = true;
+        }
+
+        private void fillCategoryComboBox()
+        {
+            DatabaseController dc = new DatabaseController();
+            List<CategoryTable> categories = dc.GetCategory();
+
+            for (int i = 0; i < categories.Count; i++)
+            {
+                categorycmb.Items.Add(categories[i].type);
+            }
+        }
+
+        private void fillStatusComboBox()
+        {
+            statuscmb.Items.Add("Inventory");
+            statuscmb.Items.Add("Shipping/Receiving");
+            statuscmb.Items.Add("Jobsite Delivery");
+            statuscmb.Sorted = true;
+        }
+        #endregion
+
+        #region Events
+        private void descriptionbtn_Click_1(object sender, EventArgs e)
+        {
+            if (item.isMaterial)
+            {
+                descriptiontxt.Text = buildItem().GetMaterialDescription();
+            }
+        }
+
+        private void materialcmb_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            widthtxt.Text = materials[materialcmb.SelectedIndex].width;
+            heighttxt.Text = materials[materialcmb.SelectedIndex].height;
+
+            findHistory();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (descriptiontxt.Text == "")
+            {
+                descriptiontxt.Text = buildItem().GetMaterialDescription();
+            }
+
+            ReturnItem(buildItem(), item_index);
+            this.Close();
+        }
+
+        private void quantitytxt_TextChanged(object sender, EventArgs e)
+        {
+            genTotal();
+        }
+
+        private void unitpricetxt_TextChanged_1(object sender, EventArgs e)
+        {
+            genTotal();
+        }
+
+        private void cancelbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gaugecmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+
+        private void colorcmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+
+        private void sizeunitcmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+        #endregion
+
+        #region Private
+        private InventoryOrderItem buildItem()
+        {
+            InventoryOrderItem Item = new InventoryOrderItem();
+
+            Item.description = descriptiontxt.Text;
+
+            Item.quantity = quantitytxt.Text;
+            Item.unit = " ";
+            Item.unit_price = float.Parse(unitpricetxt.Text);
+            Item.total = float.Parse(totaltxt.Text);
+
+            Item.designation = designationcmb.Text;
+            Item.category = categorycmb.Text;
+            Item.status = statuscmb.Text;
+
+            Item.material = materialcmb.Text;
+            Item.gauge = gaugecmb.Text;
+            Item.color = colorcmb.Text;
+            Item.width = float.Parse(widthtxt.Text);
+            Item.height = float.Parse(heighttxt.Text);
+            Item.size_unit = sizeunitcmb.Text;
+
+            Item.isMaterial = item.isMaterial;
+
+            return Item;
+        }
+
+        private void genTotal()
+        {
+            try
+            {
+                float quantity = (quantitytxt.Text == "") ? 0f : float.Parse(quantitytxt.Text);
+                float price = (unitpricetxt.Text == "") ? 0f : float.Parse(unitpricetxt.Text);
+                totaltxt.Text = (quantity * price).ToString();
+            }
+            catch (Exception e) { }
+        }
+
+        private void findHistory()
+        {
+            string _material = materialcmb.SelectedText;
+            string _color = colorcmb.SelectedText;
+            string _gauge = gaugecmb.SelectedText;
+            double _width = double.Parse(widthtxt.Text);
+            double _height = double.Parse(heighttxt.Text);
+
+            if(ValidateHistory(_material, _color, _gauge, _width, _height))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("History Bad");
+            }
+        }
+
+        private bool ValidateHistory(string _material, string _color, string _gauge, double _width, double _height)
+        {
+            if (null == _width || 0 == _width)
+            {
+                return false;
+            }
+
+            if (null == _height || 0 == _height)
+            {
+                return false;
+            }
+
+            if (null == _material || "" == _material)
+            {
+                return false;
+            }
+
+            if (null == _color || "" == _color)
+            {
+                return false;
+            }
+
+            if (null == _gauge || "" == _gauge)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        private void widthtxt_TextChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+
+        private void heighttxt_TextChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
     }
 }
 

@@ -44,6 +44,8 @@
             this.descriptiontxt = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.materialpanel = new System.Windows.Forms.Panel();
+            this.hidecmb = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gaugecmb = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.materialcmb = new System.Windows.Forms.ComboBox();
@@ -58,8 +60,6 @@
             this.savebtn = new System.Windows.Forms.Button();
             this.clearbtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.hidecmb = new System.Windows.Forms.ComboBox();
             this.materialpanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +98,6 @@
             this.descriptionbtn.TabIndex = 41;
             this.descriptionbtn.Text = "Set";
             this.descriptionbtn.UseVisualStyleBackColor = true;
-            this.descriptionbtn.Click += new System.EventHandler(this.descriptionbtn_Click);
             // 
             // label21
             // 
@@ -149,7 +148,6 @@
             this.unitpricetxt.Name = "unitpricetxt";
             this.unitpricetxt.Size = new System.Drawing.Size(227, 20);
             this.unitpricetxt.TabIndex = 47;
-            this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged);
             // 
             // label17
             // 
@@ -212,6 +210,24 @@
             this.materialpanel.Name = "materialpanel";
             this.materialpanel.Size = new System.Drawing.Size(337, 182);
             this.materialpanel.TabIndex = 72;
+            // 
+            // hidecmb
+            // 
+            this.hidecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hidecmb.FormattingEnabled = true;
+            this.hidecmb.Location = new System.Drawing.Point(103, 57);
+            this.hidecmb.Name = "hidecmb";
+            this.hidecmb.Size = new System.Drawing.Size(85, 21);
+            this.hidecmb.TabIndex = 73;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 72;
+            this.label1.Text = "Hide By Vendor";
             // 
             // gaugecmb
             // 
@@ -316,7 +332,6 @@
             this.savebtn.TabIndex = 42;
             this.savebtn.Text = "Save";
             this.savebtn.UseVisualStyleBackColor = true;
-            this.savebtn.Click += new System.EventHandler(this.savebtn_Click);
             // 
             // clearbtn
             // 
@@ -335,24 +350,6 @@
             this.cancelbtn.TabIndex = 74;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 72;
-            this.label1.Text = "Hide By Vendor";
-            // 
-            // hidecmb
-            // 
-            this.hidecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.hidecmb.FormattingEnabled = true;
-            this.hidecmb.Location = new System.Drawing.Point(103, 57);
-            this.hidecmb.Name = "hidecmb";
-            this.hidecmb.Size = new System.Drawing.Size(85, 21);
-            this.hidecmb.TabIndex = 73;
             // 
             // Form2
             // 
@@ -380,7 +377,6 @@
             this.Controls.Add(this.unitpricetxt);
             this.Name = "Form2";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.materialpanel.ResumeLayout(false);
             this.materialpanel.PerformLayout();
             this.ResumeLayout(false);
