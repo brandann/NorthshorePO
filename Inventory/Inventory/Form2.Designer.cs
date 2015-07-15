@@ -148,6 +148,7 @@
             this.unitpricetxt.Name = "unitpricetxt";
             this.unitpricetxt.Size = new System.Drawing.Size(227, 20);
             this.unitpricetxt.TabIndex = 47;
+            this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged);
             // 
             // label17
             // 
@@ -377,6 +378,7 @@
             this.Controls.Add(this.unitpricetxt);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.materialpanel.ResumeLayout(false);
             this.materialpanel.PerformLayout();
             this.ResumeLayout(false);

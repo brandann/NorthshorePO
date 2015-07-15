@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,7 +156,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.quantitytxt = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.itemtotaltxt = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
@@ -203,6 +204,7 @@
             this.createToolStripMenuItem,
             this.exportToolStripMenuItem,
             this.lookupToolStripMenuItem});
+            this.purchaseOrderToolStripMenuItem.Enabled = false;
             this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
             this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
@@ -217,13 +219,13 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // lookupToolStripMenuItem
             // 
             this.lookupToolStripMenuItem.Name = "lookupToolStripMenuItem";
-            this.lookupToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.lookupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.lookupToolStripMenuItem.Text = "Lookup";
             this.lookupToolStripMenuItem.Click += new System.EventHandler(this.lookupToolStripMenuItem_Click);
             // 
@@ -232,6 +234,7 @@
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
             this.viewToolStripMenuItem});
+            this.inventoryToolStripMenuItem.Enabled = false;
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.inventoryToolStripMenuItem.Text = "Inventory";
@@ -441,6 +444,7 @@
             this.removeitem.TabIndex = 40;
             this.removeitem.Text = "Remove Item";
             this.removeitem.UseVisualStyleBackColor = true;
+            this.removeitem.Click += new System.EventHandler(this.removeitem_Click);
             // 
             // button2
             // 
@@ -465,6 +469,7 @@
             // notetxt
             // 
             this.notetxt.Location = new System.Drawing.Point(101, 576);
+            this.notetxt.MaxLength = 255;
             this.notetxt.Multiline = true;
             this.notetxt.Name = "notetxt";
             this.notetxt.Size = new System.Drawing.Size(599, 102);
@@ -530,6 +535,7 @@
             this.orderitemlist.Name = "orderitemlist";
             this.orderitemlist.Size = new System.Drawing.Size(599, 303);
             this.orderitemlist.TabIndex = 31;
+            this.orderitemlist.SelectedIndexChanged += new System.EventHandler(this.orderitemlist_SelectedIndexChanged);
             // 
             // addmaterial
             // 
@@ -996,23 +1002,23 @@
             // 
             // dataviewlist
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataviewlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataviewlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataviewlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataviewlist.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataviewlist.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataviewlist.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataviewlist.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataviewlist.Location = new System.Drawing.Point(0, 0);
@@ -1040,7 +1046,7 @@
             this.ItemPanel.Controls.Add(this.label31);
             this.ItemPanel.Controls.Add(this.label32);
             this.ItemPanel.Controls.Add(this.quantitytxt);
-            this.ItemPanel.Controls.Add(this.textBox1);
+            this.ItemPanel.Controls.Add(this.itemtotaltxt);
             this.ItemPanel.Controls.Add(this.label33);
             this.ItemPanel.Controls.Add(this.label34);
             this.ItemPanel.Controls.Add(this.unitpricetxt);
@@ -1052,19 +1058,20 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
             this.chart1.Location = new System.Drawing.Point(23, 244);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(309, 303);
             this.chart1.TabIndex = 94;
             this.chart1.Text = "chart1";
+            this.chart1.Visible = false;
             // 
             // hidecmb
             // 
@@ -1145,6 +1152,7 @@
             this.AverageLabel.Size = new System.Drawing.Size(111, 13);
             this.AverageLabel.TabIndex = 48;
             this.AverageLabel.Text = "Average Material Cost";
+            this.AverageLabel.Visible = false;
             // 
             // HistoryList
             // 
@@ -1153,6 +1161,7 @@
             this.HistoryList.Name = "HistoryList";
             this.HistoryList.Size = new System.Drawing.Size(229, 303);
             this.HistoryList.TabIndex = 94;
+            this.HistoryList.Visible = false;
             // 
             // gaugecmb
             // 
@@ -1352,12 +1361,12 @@
             this.quantitytxt.TabIndex = 81;
             this.quantitytxt.TextChanged += new System.EventHandler(this.quantitytxt_TextChanged);
             // 
-            // textBox1
+            // itemtotaltxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 106);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 20);
-            this.textBox1.TabIndex = 85;
+            this.itemtotaltxt.Location = new System.Drawing.Point(105, 106);
+            this.itemtotaltxt.Name = "itemtotaltxt";
+            this.itemtotaltxt.Size = new System.Drawing.Size(227, 20);
+            this.itemtotaltxt.TabIndex = 85;
             // 
             // label33
             // 
@@ -1395,6 +1404,7 @@
             this.Controls.Add(this.lookupPanel);
             this.Controls.Add(this.POPanel);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -1543,7 +1553,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox quantitytxt;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox itemtotaltxt;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox unitpricetxt;

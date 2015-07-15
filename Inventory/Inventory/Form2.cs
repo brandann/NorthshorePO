@@ -16,5 +16,15 @@ namespace Inventory
         {
             
         }
+
+        private void unitpricetxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

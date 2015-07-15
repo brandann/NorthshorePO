@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel; 
 
 namespace Inventory
 {
@@ -21,11 +24,17 @@ namespace Inventory
         private List<PurchaseOrderItem> PurchaseOrderResults;
         private string ponum;
         private string initials;
+
+        private OleDbConnection connection = new OleDbConnection();
         
         public enum SearchByTerms { PONumber, ProjectNumber, MaterialType, MaterialColor}
         public enum DataViewType { Inventory, Vendor, Color, Material, Thickness, Purchaser, PurchseOrder }
         private DataViewType currentDataType;
         private DatabaseController databaseController;
+
+        private static Excel.Workbook MyBook = null;
+        private static Excel.Application MyApp = null;
+        private static Excel.Worksheet MySheet = null;
 
         private InventoryOrderItem item;
         private bool newItem;
@@ -37,6 +46,7 @@ namespace Inventory
         public Form1()
         {
             InitializeComponent();
+            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\NssmInventory.mdb; Persist Security Info=False;";
             databaseController = new DatabaseController();
             
             this.Size = new Size(760, 830);
@@ -57,16 +67,38 @@ namespace Inventory
 
             hidecmb.Items.Add("YES");
             hidecmb.Items.Add("NO");
+
+            //start with create right now
+            initNewPO();
         }
 
         #region init
         private void reset()
         {
+            resetItem();
             POPanel.Visible = false;
             lookupPanel.Visible = false;
             LookupResultPanel.Visible = false;
             InventoryViewPanel.Visible = false;
             ItemPanel.Visible = false;
+        }
+
+        private void resetItem()
+        {
+            descriptiontxt.ResetText();
+            quantitytxt.ResetText();
+            unitpricetxt.ResetText();
+            itemtotaltxt.ResetText();
+
+            designationcmb.SelectedIndex = -1;
+            categorycmb.SelectedIndex = -1;
+            statuscmb.SelectedIndex = -1;
+            materialcmb.SelectedIndex = -1;
+            gaugecmb.SelectedIndex = -1;
+            colorcmb.SelectedIndex = -1;
+
+            widthtxt.ResetText();
+            heighttxt.ResetText();
         }
 
         public void initNewPO()
@@ -225,28 +257,33 @@ namespace Inventory
         {
             if(isPOValid())
             {
-                if(SavePO())
-                {
-                    SubmitPO();
-                    int materialcount = 0;
-                    for (int i = 0; i < OrderItems.Count; i++)
-                    {
-                        if (OrderItems[i].isMaterial)
-                        {
-                            SubmitMaterialItem(OrderItems[i]);
-                            materialcount++;
-                        }
-                    }
-                    MessageBox.Show("Purchase Order and " + materialcount + " material items submitted");
-                    return;
-                }
-                else
-                {
-                    goto ERROR;
-                }
+                
             }
-        ERROR:
-            MessageBox.Show("ERROR: Purchase Order NOT Submitted.");
+            else
+            {
+                MessageBox.Show("ERROR: Purchase Order Not Valid, Please Check Fields");
+                return;
+            }
+
+            if (SubmitPO())
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("ERROR: Purchase Order Not inserted into database");
+                return;
+            }
+
+            if (SavePO())
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("ERROR: Purchase Order Not Saved");
+                return;
+            }
         }
 
         private void purchasercmb_SelectedIndexChanged(object sender, EventArgs e)
@@ -422,8 +459,8 @@ namespace Inventory
             totaltxt.Text = "$" + total;
         }
 
-        private void SubmitPO()
-        {/*
+        private bool SubmitPO()
+        {
             string queue = buildQueuePO();
             purchasers = new List<Purchaser>();
             try
@@ -435,16 +472,30 @@ namespace Inventory
                 connection.Open();
                 command.ExecuteNonQuery();
 
-                MessageBox.Show("Inserted: " + queue);
+                //MessageBox.Show("Inserted: " + queue);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.ToString());
+                connection.Close();
+                return false;
             }
             finally
             {
                 connection.Close();
-            }*/
+            }
+
+            int materialcount = 0;
+            for (int i = 0; i < OrderItems.Count; i++)
+            {
+                if (OrderItems[i].isMaterial)
+                {
+                    SubmitMaterialItem(OrderItems[i]);
+                    materialcount++;
+                }
+            }
+            MessageBox.Show("Purchase Order and " + materialcount + " material items submitted");
+            return true;
         }
 
         private string buildQueuePO()
@@ -485,7 +536,7 @@ namespace Inventory
         }
 
         private void SubmitMaterialItem(InventoryOrderItem ioi)
-        {/*
+        {
             string queue = buildQueueMaterial(ioi);
             purchasers = new List<Purchaser>();
             try
@@ -497,7 +548,7 @@ namespace Inventory
                 connection.Open();
                 command.ExecuteNonQuery();
 
-                MessageBox.Show("Inserted: " + queue);
+                //MessageBox.Show("Inserted: " + queue);
             }
             catch (Exception ex)
             {
@@ -506,7 +557,7 @@ namespace Inventory
             finally
             {
                 connection.Close();
-            }*/
+            }
         }
 
         private string buildQueueMaterial(InventoryOrderItem ioi)
@@ -654,7 +705,7 @@ namespace Inventory
         }
         
         private bool SavePO()
-        {/*
+        {
             string databasefilename = PurchaseOrderDatabaseCopySave + PoNumbertxt.Text + ".xlsx";
             System.IO.File.Copy(PurchaseOrderTemplateLocation + PurchaseOrderTemplateFileName, databasefilename);
 
@@ -705,7 +756,7 @@ namespace Inventory
             MyBook.Save();
             MyBook.Close();
 
-            DialogResult result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+            DialogResult result = MessageBox.Show("Do you want a copy of the purchase order?", "Confirmation", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -718,9 +769,9 @@ namespace Inventory
                 {
                     System.IO.File.Copy(databasefilename, saveFileDialog1.FileName);
                 }
-            }*/
+            }
 
-            return false;
+            return true;
         }
 
         private class Purchaser : IComparable<Purchaser>
@@ -909,9 +960,12 @@ namespace Inventory
 
         private void materialcmb_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            widthtxt.Text = materials[materialcmb.SelectedIndex].width;
-            heighttxt.Text = materials[materialcmb.SelectedIndex].height;
-
+            try
+            {
+                widthtxt.Text = materials[materialcmb.SelectedIndex].width;
+                heighttxt.Text = materials[materialcmb.SelectedIndex].height;
+            }
+            catch (Exception ex) { }
             findHistory();
         }
 
@@ -923,7 +977,8 @@ namespace Inventory
             }
 
             ReturnItem(buildItem(), item_index);
-            this.Close();
+            reset();
+            POPanel.Visible = true;
         }
 
         private void quantitytxt_TextChanged(object sender, EventArgs e)
@@ -938,12 +993,13 @@ namespace Inventory
 
         private void cancelbtn_Click(object sender, EventArgs e)
         {
-
+            reset();
+            POPanel.Visible = true;
         }
 
         private void clearbtn_Click(object sender, EventArgs e)
         {
-
+            resetItem();
         }
 
         private void gaugecmb_SelectedIndexChanged(object sender, EventArgs e)
@@ -971,8 +1027,8 @@ namespace Inventory
 
             Item.quantity = quantitytxt.Text;
             Item.unit = " ";
-            Item.unit_price = float.Parse(unitpricetxt.Text);
-            Item.total = float.Parse(totaltxt.Text);
+            Item.unit_price = ParseFloat(unitpricetxt.Text);
+            Item.total = ParseFloat(itemtotaltxt.Text);
 
             Item.designation = designationcmb.Text;
             Item.category = categorycmb.Text;
@@ -981,8 +1037,8 @@ namespace Inventory
             Item.material = materialcmb.Text;
             Item.gauge = gaugecmb.Text;
             Item.color = colorcmb.Text;
-            Item.width = float.Parse(widthtxt.Text);
-            Item.height = float.Parse(heighttxt.Text);
+            Item.width = ParseFloat(widthtxt.Text);
+            Item.height = ParseFloat(heighttxt.Text);
             Item.size_unit = sizeunitcmb.Text;
 
             Item.isMaterial = item.isMaterial;
@@ -994,11 +1050,28 @@ namespace Inventory
         {
             try
             {
-                float quantity = (quantitytxt.Text == "") ? 0f : float.Parse(quantitytxt.Text);
-                float price = (unitpricetxt.Text == "") ? 0f : float.Parse(unitpricetxt.Text);
-                totaltxt.Text = (quantity * price).ToString();
+                float quantity = ParseFloat(quantitytxt.Text);
+                float price = ParseFloat(unitpricetxt.Text);
+                itemtotaltxt.Text = (quantity * price).ToString();
             }
             catch (Exception e) { }
+        }
+
+        private float ParseFloat(string tb)
+        {
+            float value = 0;
+
+            if(tb == "")
+            {
+                return 0;
+            }
+
+            if(float.TryParse(tb, out value))
+            {
+                return value;
+            }
+
+            return 0;
         }
 
         private void findHistory()
@@ -1006,8 +1079,8 @@ namespace Inventory
             string _material = materialcmb.SelectedText;
             string _color = colorcmb.SelectedText;
             string _gauge = gaugecmb.SelectedText;
-            double _width = double.Parse(widthtxt.Text);
-            double _height = double.Parse(heighttxt.Text);
+            double _width = (widthtxt.Text == "")? 0:double.Parse(widthtxt.Text);
+            double _height = (heighttxt.Text == "")? 0:double.Parse(heighttxt.Text);
 
             if(ValidateHistory(_material, _color, _gauge, _width, _height))
             {
@@ -1015,18 +1088,18 @@ namespace Inventory
             }
             else
             {
-                MessageBox.Show("History Bad");
+                //MessageBox.Show("History Bad");
             }
         }
 
         private bool ValidateHistory(string _material, string _color, string _gauge, double _width, double _height)
         {
-            if (null == _width || 0 == _width)
+            if (0 == _width)
             {
                 return false;
             }
 
-            if (null == _height || 0 == _height)
+            if (0 == _height)
             {
                 return false;
             }
@@ -1059,6 +1132,22 @@ namespace Inventory
         private void heighttxt_TextChanged(object sender, EventArgs e)
         {
             findHistory();
+        }
+
+        private void orderitemlist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calctotal();
+        }
+
+        private void removeitem_Click(object sender, EventArgs e)
+        {
+            int index = orderitemlist.SelectedIndex;
+
+            if (index > -1)
+            {
+                orderitemlist.Items.RemoveAt(index);
+                OrderItems.RemoveAt(index);
+            }
         }
     }
 }

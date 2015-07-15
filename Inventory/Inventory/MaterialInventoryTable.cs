@@ -17,7 +17,7 @@ namespace Inventory
         public string description;
         public string materail;
         public string eta;
-        public string quantity;
+        public double quantity;
         public string unit;
         public string ata;
         public string unit_cost;
