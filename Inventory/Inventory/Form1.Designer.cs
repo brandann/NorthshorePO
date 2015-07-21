@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,7 +122,6 @@
             this.savebtn = new System.Windows.Forms.Button();
             this.dataviewlist = new System.Windows.Forms.DataGridView();
             this.ItemPanel = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.hidecmb = new System.Windows.Forms.ComboBox();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -160,6 +156,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
+            this.quantityunitcmb = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
@@ -167,7 +164,6 @@
             this.InventoryViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataviewlist)).BeginInit();
             this.ItemPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.materialpanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,15 +200,15 @@
             this.createToolStripMenuItem,
             this.exportToolStripMenuItem,
             this.lookupToolStripMenuItem});
-            this.purchaseOrderToolStripMenuItem.Enabled = false;
             this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
             this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
+            this.purchaseOrderToolStripMenuItem.Visible = false;
             // 
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createToolStripMenuItem.Text = "Create";
             this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
@@ -234,15 +230,15 @@
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
             this.viewToolStripMenuItem});
-            this.inventoryToolStripMenuItem.Enabled = false;
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchToolStripMenuItem.Text = "Search";
             // 
             // viewToolStripMenuItem
@@ -256,7 +252,7 @@
             this.thicknessToolStripMenuItem1,
             this.purchasersToolStripMenuItem1});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // inventoryToolStripMenuItem1
@@ -390,6 +386,7 @@
             this.statuslbl.Size = new System.Drawing.Size(41, 13);
             this.statuslbl.TabIndex = 46;
             this.statuslbl.Text = "label11";
+            this.statuslbl.Visible = false;
             // 
             // button3
             // 
@@ -1002,23 +999,23 @@
             // 
             // dataviewlist
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataviewlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataviewlist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataviewlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataviewlist.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataviewlist.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataviewlist.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataviewlist.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataviewlist.Location = new System.Drawing.Point(0, 0);
@@ -1028,7 +1025,9 @@
             // 
             // ItemPanel
             // 
-            this.ItemPanel.Controls.Add(this.chart1);
+            this.ItemPanel.Controls.Add(this.AverageLabel);
+            this.ItemPanel.Controls.Add(this.quantityunitcmb);
+            this.ItemPanel.Controls.Add(this.HistoryList);
             this.ItemPanel.Controls.Add(this.hidecmb);
             this.ItemPanel.Controls.Add(this.cancelbtn);
             this.ItemPanel.Controls.Add(this.label22);
@@ -1055,23 +1054,6 @@
             this.ItemPanel.Size = new System.Drawing.Size(722, 756);
             this.ItemPanel.TabIndex = 48;
             this.ItemPanel.Visible = false;
-            // 
-            // chart1
-            // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
-            this.chart1.Location = new System.Drawing.Point(23, 244);
-            this.chart1.Name = "chart1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart1.Series.Add(series6);
-            this.chart1.Size = new System.Drawing.Size(309, 303);
-            this.chart1.TabIndex = 94;
-            this.chart1.Text = "chart1";
-            this.chart1.Visible = false;
             // 
             // hidecmb
             // 
@@ -1125,8 +1107,6 @@
             // 
             // materialpanel
             // 
-            this.materialpanel.Controls.Add(this.AverageLabel);
-            this.materialpanel.Controls.Add(this.HistoryList);
             this.materialpanel.Controls.Add(this.gaugecmb);
             this.materialpanel.Controls.Add(this.label23);
             this.materialpanel.Controls.Add(this.materialcmb);
@@ -1139,15 +1119,15 @@
             this.materialpanel.Controls.Add(this.label27);
             this.materialpanel.Controls.Add(this.heighttxt);
             this.materialpanel.Enabled = false;
-            this.materialpanel.Location = new System.Drawing.Point(354, 17);
+            this.materialpanel.Location = new System.Drawing.Point(8, 225);
             this.materialpanel.Name = "materialpanel";
-            this.materialpanel.Size = new System.Drawing.Size(337, 632);
+            this.materialpanel.Size = new System.Drawing.Size(337, 392);
             this.materialpanel.TabIndex = 91;
             // 
             // AverageLabel
             // 
             this.AverageLabel.AutoSize = true;
-            this.AverageLabel.Location = new System.Drawing.Point(95, 540);
+            this.AverageLabel.Location = new System.Drawing.Point(441, 350);
             this.AverageLabel.Name = "AverageLabel";
             this.AverageLabel.Size = new System.Drawing.Size(111, 13);
             this.AverageLabel.TabIndex = 48;
@@ -1157,7 +1137,7 @@
             // HistoryList
             // 
             this.HistoryList.FormattingEnabled = true;
-            this.HistoryList.Location = new System.Drawing.Point(96, 227);
+            this.HistoryList.Location = new System.Drawing.Point(444, 44);
             this.HistoryList.Name = "HistoryList";
             this.HistoryList.Size = new System.Drawing.Size(229, 303);
             this.HistoryList.TabIndex = 94;
@@ -1167,7 +1147,7 @@
             // 
             this.gaugecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gaugecmb.FormattingEnabled = true;
-            this.gaugecmb.Location = new System.Drawing.Point(96, 63);
+            this.gaugecmb.Location = new System.Drawing.Point(95, 30);
             this.gaugecmb.Name = "gaugecmb";
             this.gaugecmb.Size = new System.Drawing.Size(229, 21);
             this.gaugecmb.TabIndex = 70;
@@ -1176,7 +1156,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(13, 39);
+            this.label23.Location = new System.Drawing.Point(12, 6);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(44, 13);
             this.label23.TabIndex = 58;
@@ -1186,7 +1166,7 @@
             // 
             this.materialcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.materialcmb.FormattingEnabled = true;
-            this.materialcmb.Location = new System.Drawing.Point(96, 36);
+            this.materialcmb.Location = new System.Drawing.Point(95, 3);
             this.materialcmb.Name = "materialcmb";
             this.materialcmb.Size = new System.Drawing.Size(229, 21);
             this.materialcmb.TabIndex = 69;
@@ -1195,7 +1175,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(13, 66);
+            this.label24.Location = new System.Drawing.Point(12, 33);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(39, 13);
             this.label24.TabIndex = 56;
@@ -1205,7 +1185,7 @@
             // 
             this.colorcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.colorcmb.FormattingEnabled = true;
-            this.colorcmb.Location = new System.Drawing.Point(96, 126);
+            this.colorcmb.Location = new System.Drawing.Point(95, 93);
             this.colorcmb.Name = "colorcmb";
             this.colorcmb.Size = new System.Drawing.Size(229, 21);
             this.colorcmb.TabIndex = 41;
@@ -1214,7 +1194,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(13, 129);
+            this.label25.Location = new System.Drawing.Point(12, 96);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(31, 13);
             this.label25.TabIndex = 60;
@@ -1223,7 +1203,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(13, 156);
+            this.label26.Location = new System.Drawing.Point(12, 123);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(35, 13);
             this.label26.TabIndex = 62;
@@ -1231,7 +1211,7 @@
             // 
             // widthtxt
             // 
-            this.widthtxt.Location = new System.Drawing.Point(96, 153);
+            this.widthtxt.Location = new System.Drawing.Point(95, 120);
             this.widthtxt.Name = "widthtxt";
             this.widthtxt.Size = new System.Drawing.Size(129, 20);
             this.widthtxt.TabIndex = 63;
@@ -1241,7 +1221,7 @@
             // 
             this.sizeunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeunitcmb.FormattingEnabled = true;
-            this.sizeunitcmb.Location = new System.Drawing.Point(240, 179);
+            this.sizeunitcmb.Location = new System.Drawing.Point(239, 146);
             this.sizeunitcmb.Name = "sizeunitcmb";
             this.sizeunitcmb.Size = new System.Drawing.Size(85, 21);
             this.sizeunitcmb.TabIndex = 40;
@@ -1250,7 +1230,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(13, 183);
+            this.label27.Location = new System.Drawing.Point(12, 150);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(38, 13);
             this.label27.TabIndex = 65;
@@ -1258,7 +1238,7 @@
             // 
             // heighttxt
             // 
-            this.heighttxt.Location = new System.Drawing.Point(96, 180);
+            this.heighttxt.Location = new System.Drawing.Point(95, 147);
             this.heighttxt.Name = "heighttxt";
             this.heighttxt.Size = new System.Drawing.Size(129, 20);
             this.heighttxt.TabIndex = 66;
@@ -1357,7 +1337,7 @@
             // 
             this.quantitytxt.Location = new System.Drawing.Point(105, 54);
             this.quantitytxt.Name = "quantitytxt";
-            this.quantitytxt.Size = new System.Drawing.Size(227, 20);
+            this.quantitytxt.Size = new System.Drawing.Size(136, 20);
             this.quantitytxt.TabIndex = 81;
             this.quantitytxt.TextChanged += new System.EventHandler(this.quantitytxt_TextChanged);
             // 
@@ -1365,7 +1345,7 @@
             // 
             this.itemtotaltxt.Location = new System.Drawing.Point(105, 106);
             this.itemtotaltxt.Name = "itemtotaltxt";
-            this.itemtotaltxt.Size = new System.Drawing.Size(227, 20);
+            this.itemtotaltxt.Size = new System.Drawing.Size(136, 20);
             this.itemtotaltxt.TabIndex = 85;
             // 
             // label33
@@ -1382,27 +1362,42 @@
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(20, 109);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(78, 13);
+            this.label34.Size = new System.Drawing.Size(70, 13);
             this.label34.TabIndex = 84;
-            this.label34.Text = "Total Ammount";
+            this.label34.Text = "Total Amount";
             // 
             // unitpricetxt
             // 
             this.unitpricetxt.Location = new System.Drawing.Point(105, 80);
             this.unitpricetxt.Name = "unitpricetxt";
-            this.unitpricetxt.Size = new System.Drawing.Size(227, 20);
+            this.unitpricetxt.Size = new System.Drawing.Size(136, 20);
             this.unitpricetxt.TabIndex = 83;
             this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
+            // 
+            // quantityunitcmb
+            // 
+            this.quantityunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.quantityunitcmb.FormattingEnabled = true;
+            this.quantityunitcmb.Items.AddRange(new object[] {
+            "SF",
+            "LBS",
+            "EA",
+            "ROLLS",
+            "LF"});
+            this.quantityunitcmb.Location = new System.Drawing.Point(247, 53);
+            this.quantityunitcmb.Name = "quantityunitcmb";
+            this.quantityunitcmb.Size = new System.Drawing.Size(85, 21);
+            this.quantityunitcmb.TabIndex = 95;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1409, 793);
+            this.Controls.Add(this.POPanel);
             this.Controls.Add(this.ItemPanel);
             this.Controls.Add(this.InventoryViewPanel);
             this.Controls.Add(this.lookupPanel);
-            this.Controls.Add(this.POPanel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -1422,7 +1417,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataviewlist)).EndInit();
             this.ItemPanel.ResumeLayout(false);
             this.ItemPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.materialpanel.ResumeLayout(false);
             this.materialpanel.PerformLayout();
             this.ResumeLayout(false);
@@ -1557,7 +1551,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox unitpricetxt;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ComboBox quantityunitcmb;
     }
 }
 

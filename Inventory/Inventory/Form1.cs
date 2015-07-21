@@ -70,6 +70,7 @@ namespace Inventory
 
             //start with create right now
             initNewPO();
+            quantityunitcmb.Sorted = true;
         }
 
         #region init
@@ -139,7 +140,7 @@ namespace Inventory
             jobnumbertxt.Text = "";
 
             shippingcmb.SelectedIndex = 0;
-            address1txt.Text = "18603 Beverly Park RD. Bldg C.";
+            address1txt.Text = "11831 Beverly Park RD. Bldg C.";
             address2txt.Text = "Everett, WA 98204";
 
             orderitemlist.Items.Clear();
