@@ -640,8 +640,11 @@ namespace Inventory
             QA = QA + "HEIGHT,";
             QB = QB + ioi.height + "','";
 
-            QA = QA + "UNITS";
-            QB = QB + ioi.size_unit;
+            QA = QA + "UNITS,";
+            QB = QB + ioi.size_unit + "','";
+
+            QA = QA + "SHEET_SIZE";
+            QB = QB + ioi.width + " x " + ioi.height + " " + ioi.size_unit;
 
             QA = QA + ")";
             QB = QB + "')";
