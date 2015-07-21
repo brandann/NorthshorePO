@@ -845,6 +845,19 @@ namespace Inventory
             sizeunitcmb.SelectedItem = "IN";
 
             hidecmb.SelectedItem = "NO";
+
+            descriptionbtn.Visible = false;
+
+            if(isMaterial)
+            {
+                descriptiontxt.Enabled = false;
+                //descriptionbtn.Enabled = false;
+            }
+            else
+            {
+                descriptiontxt.Enabled = true;
+            }
+
         }
 
         public void EditItem(InventoryOrderItem ioi, Form1 parent, int index)
@@ -1027,7 +1040,7 @@ namespace Inventory
             Item.description = descriptiontxt.Text;
 
             Item.quantity = quantitytxt.Text;
-            Item.unit = " ";
+            Item.unit = quantityunitcmb.Text;
             Item.unit_price = ParseFloat(unitpricetxt.Text);
             Item.total = ParseFloat(itemtotaltxt.Text);
 

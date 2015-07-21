@@ -1266,7 +1266,7 @@
             // 
             this.descriptiontxt.Location = new System.Drawing.Point(105, 14);
             this.descriptiontxt.Name = "descriptiontxt";
-            this.descriptiontxt.Size = new System.Drawing.Size(188, 20);
+            this.descriptiontxt.Size = new System.Drawing.Size(227, 20);
             this.descriptiontxt.TabIndex = 77;
             // 
             // designationcmb
@@ -1307,7 +1307,7 @@
             // 
             // descriptionbtn
             // 
-            this.descriptionbtn.Location = new System.Drawing.Point(299, 11);
+            this.descriptionbtn.Location = new System.Drawing.Point(504, 697);
             this.descriptionbtn.Name = "descriptionbtn";
             this.descriptionbtn.Size = new System.Drawing.Size(33, 23);
             this.descriptionbtn.TabIndex = 76;
@@ -1403,7 +1403,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
+            this.Text = "Inventory Submission";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
