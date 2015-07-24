@@ -654,9 +654,10 @@ namespace Inventory
 
         private string GetNoteStringForDB()
         {
-
-            //test
-            //this is a test of the textbox length, we are testing that when the text it longer than 255 characters anything over 250 will be cut off and replaced with a "..." in the database and the full text will be daved in the file version of the purchase order. thank you
+            // this is a test of the textbox length, we are testing that when the text it longer 
+            // than 255 characters anything over 250 will be cut off and replaced with a "..." 
+            // in the database and the full text will be daved in the file version of the 
+            // purchase order. thank you
 
             string textBox = notetxt.Text;
             if(textBox.Length == 0)
@@ -1166,6 +1167,20 @@ namespace Inventory
                 OrderItems.RemoveAt(index);
             }
         }
+
+        private void loadprojectbtn_Click(object sender, EventArgs e)
+        {
+            var jobform = new Form3();
+            jobform.Show();
+            jobform.init(this);
+        }
+
+        public void SetJobFromLoader(string jobname, string jobnumber)
+        {
+            jobnumbertxt.Text = jobnumber;
+            projecttxt.Text = jobname;
+        }
+
     }
 }
 

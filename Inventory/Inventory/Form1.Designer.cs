@@ -59,7 +59,7 @@
             this.totaltxt = new System.Windows.Forms.TextBox();
             this.initialtxt = new System.Windows.Forms.TextBox();
             this.removeitem = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.loadprojectbtn = new System.Windows.Forms.Button();
             this.edititem = new System.Windows.Forms.Button();
             this.notetxt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -122,14 +122,15 @@
             this.savebtn = new System.Windows.Forms.Button();
             this.dataviewlist = new System.Windows.Forms.DataGridView();
             this.ItemPanel = new System.Windows.Forms.Panel();
+            this.AverageLabel = new System.Windows.Forms.Label();
+            this.quantityunitcmb = new System.Windows.Forms.ComboBox();
+            this.HistoryList = new System.Windows.Forms.ListBox();
             this.hidecmb = new System.Windows.Forms.ComboBox();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.clearbtn = new System.Windows.Forms.Button();
             this.itemsavebtn = new System.Windows.Forms.Button();
             this.materialpanel = new System.Windows.Forms.Panel();
-            this.AverageLabel = new System.Windows.Forms.Label();
-            this.HistoryList = new System.Windows.Forms.ListBox();
             this.gaugecmb = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.materialcmb = new System.Windows.Forms.ComboBox();
@@ -156,7 +157,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
-            this.quantityunitcmb = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
@@ -208,20 +208,20 @@
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.createToolStripMenuItem.Text = "Create";
             this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // lookupToolStripMenuItem
             // 
             this.lookupToolStripMenuItem.Name = "lookupToolStripMenuItem";
-            this.lookupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lookupToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.lookupToolStripMenuItem.Text = "Lookup";
             this.lookupToolStripMenuItem.Click += new System.EventHandler(this.lookupToolStripMenuItem_Click);
             // 
@@ -238,7 +238,7 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.searchToolStripMenuItem.Text = "Search";
             // 
             // viewToolStripMenuItem
@@ -252,7 +252,7 @@
             this.thicknessToolStripMenuItem1,
             this.purchasersToolStripMenuItem1});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // inventoryToolStripMenuItem1
@@ -333,7 +333,7 @@
             this.POPanel.Controls.Add(this.totaltxt);
             this.POPanel.Controls.Add(this.initialtxt);
             this.POPanel.Controls.Add(this.removeitem);
-            this.POPanel.Controls.Add(this.button2);
+            this.POPanel.Controls.Add(this.loadprojectbtn);
             this.POPanel.Controls.Add(this.edititem);
             this.POPanel.Controls.Add(this.notetxt);
             this.POPanel.Controls.Add(this.label13);
@@ -362,7 +362,7 @@
             this.POPanel.Controls.Add(this.PoNumbertxt);
             this.POPanel.Controls.Add(this.label1);
             this.POPanel.Controls.Add(this.getponumbtn);
-            this.POPanel.Location = new System.Drawing.Point(729, 27);
+            this.POPanel.Location = new System.Drawing.Point(547, 12);
             this.POPanel.Name = "POPanel";
             this.POPanel.Size = new System.Drawing.Size(722, 756);
             this.POPanel.TabIndex = 3;
@@ -443,15 +443,15 @@
             this.removeitem.UseVisualStyleBackColor = true;
             this.removeitem.Click += new System.EventHandler(this.removeitem_Click);
             // 
-            // button2
+            // loadprojectbtn
             // 
-            this.button2.Location = new System.Drawing.Point(482, 161);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(218, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Load Project";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
+            this.loadprojectbtn.Location = new System.Drawing.Point(482, 10);
+            this.loadprojectbtn.Name = "loadprojectbtn";
+            this.loadprojectbtn.Size = new System.Drawing.Size(218, 23);
+            this.loadprojectbtn.TabIndex = 9;
+            this.loadprojectbtn.Text = "Load Project";
+            this.loadprojectbtn.UseVisualStyleBackColor = true;
+            this.loadprojectbtn.Click += new System.EventHandler(this.loadprojectbtn_Click);
             // 
             // edititem
             // 
@@ -555,7 +555,7 @@
             // 
             // address2txt
             // 
-            this.address2txt.Location = new System.Drawing.Point(482, 127);
+            this.address2txt.Location = new System.Drawing.Point(482, 164);
             this.address2txt.Name = "address2txt";
             this.address2txt.Size = new System.Drawing.Size(218, 20);
             this.address2txt.TabIndex = 24;
@@ -563,16 +563,15 @@
             // 
             // shippingcmb
             // 
-            this.shippingcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shippingcmb.FormattingEnabled = true;
-            this.shippingcmb.Location = new System.Drawing.Point(482, 74);
+            this.shippingcmb.Location = new System.Drawing.Point(482, 111);
             this.shippingcmb.Name = "shippingcmb";
             this.shippingcmb.Size = new System.Drawing.Size(218, 21);
             this.shippingcmb.TabIndex = 23;
             // 
             // address1txt
             // 
-            this.address1txt.Location = new System.Drawing.Point(482, 101);
+            this.address1txt.Location = new System.Drawing.Point(482, 138);
             this.address1txt.Name = "address1txt";
             this.address1txt.Size = new System.Drawing.Size(218, 20);
             this.address1txt.TabIndex = 22;
@@ -581,7 +580,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(384, 77);
+            this.label8.Location = new System.Drawing.Point(384, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 19;
@@ -623,7 +622,7 @@
             // 
             // jobnumbertxt
             // 
-            this.jobnumbertxt.Location = new System.Drawing.Point(482, 37);
+            this.jobnumbertxt.Location = new System.Drawing.Point(482, 63);
             this.jobnumbertxt.Name = "jobnumbertxt";
             this.jobnumbertxt.Size = new System.Drawing.Size(218, 20);
             this.jobnumbertxt.TabIndex = 12;
@@ -631,7 +630,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(384, 40);
+            this.label4.Location = new System.Drawing.Point(384, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 11;
@@ -639,7 +638,7 @@
             // 
             // projecttxt
             // 
-            this.projecttxt.Location = new System.Drawing.Point(482, 11);
+            this.projecttxt.Location = new System.Drawing.Point(482, 37);
             this.projecttxt.Name = "projecttxt";
             this.projecttxt.Size = new System.Drawing.Size(218, 20);
             this.projecttxt.TabIndex = 10;
@@ -647,7 +646,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(384, 14);
+            this.label3.Location = new System.Drawing.Point(384, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 8;
@@ -1055,6 +1054,40 @@
             this.ItemPanel.TabIndex = 48;
             this.ItemPanel.Visible = false;
             // 
+            // AverageLabel
+            // 
+            this.AverageLabel.AutoSize = true;
+            this.AverageLabel.Location = new System.Drawing.Point(441, 350);
+            this.AverageLabel.Name = "AverageLabel";
+            this.AverageLabel.Size = new System.Drawing.Size(111, 13);
+            this.AverageLabel.TabIndex = 48;
+            this.AverageLabel.Text = "Average Material Cost";
+            this.AverageLabel.Visible = false;
+            // 
+            // quantityunitcmb
+            // 
+            this.quantityunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.quantityunitcmb.FormattingEnabled = true;
+            this.quantityunitcmb.Items.AddRange(new object[] {
+            "SF",
+            "LBS",
+            "EA",
+            "ROLLS",
+            "LF"});
+            this.quantityunitcmb.Location = new System.Drawing.Point(247, 53);
+            this.quantityunitcmb.Name = "quantityunitcmb";
+            this.quantityunitcmb.Size = new System.Drawing.Size(85, 21);
+            this.quantityunitcmb.TabIndex = 95;
+            // 
+            // HistoryList
+            // 
+            this.HistoryList.FormattingEnabled = true;
+            this.HistoryList.Location = new System.Drawing.Point(444, 44);
+            this.HistoryList.Name = "HistoryList";
+            this.HistoryList.Size = new System.Drawing.Size(229, 303);
+            this.HistoryList.TabIndex = 94;
+            this.HistoryList.Visible = false;
+            // 
             // hidecmb
             // 
             this.hidecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1123,25 +1156,6 @@
             this.materialpanel.Name = "materialpanel";
             this.materialpanel.Size = new System.Drawing.Size(337, 392);
             this.materialpanel.TabIndex = 91;
-            // 
-            // AverageLabel
-            // 
-            this.AverageLabel.AutoSize = true;
-            this.AverageLabel.Location = new System.Drawing.Point(441, 350);
-            this.AverageLabel.Name = "AverageLabel";
-            this.AverageLabel.Size = new System.Drawing.Size(111, 13);
-            this.AverageLabel.TabIndex = 48;
-            this.AverageLabel.Text = "Average Material Cost";
-            this.AverageLabel.Visible = false;
-            // 
-            // HistoryList
-            // 
-            this.HistoryList.FormattingEnabled = true;
-            this.HistoryList.Location = new System.Drawing.Point(444, 44);
-            this.HistoryList.Name = "HistoryList";
-            this.HistoryList.Size = new System.Drawing.Size(229, 303);
-            this.HistoryList.TabIndex = 94;
-            this.HistoryList.Visible = false;
             // 
             // gaugecmb
             // 
@@ -1374,21 +1388,6 @@
             this.unitpricetxt.TabIndex = 83;
             this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
             // 
-            // quantityunitcmb
-            // 
-            this.quantityunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.quantityunitcmb.FormattingEnabled = true;
-            this.quantityunitcmb.Items.AddRange(new object[] {
-            "SF",
-            "LBS",
-            "EA",
-            "ROLLS",
-            "LF"});
-            this.quantityunitcmb.Location = new System.Drawing.Point(247, 53);
-            this.quantityunitcmb.Name = "quantityunitcmb";
-            this.quantityunitcmb.Size = new System.Drawing.Size(85, 21);
-            this.quantityunitcmb.TabIndex = 95;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1461,7 +1460,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox projecttxt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button loadprojectbtn;
         private System.Windows.Forms.ComboBox purchasercmb;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox PoNumbertxt;
