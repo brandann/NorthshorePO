@@ -36,7 +36,7 @@ namespace Inventory
         #region Constructor
         public DatabaseController()
         {
-            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\NssmInventory.mdb; Persist Security Info=False;";
+            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
         }
         #endregion
 
@@ -248,6 +248,7 @@ namespace Inventory
                     ColorTable color = new ColorTable();
                     color.color = reader.GetString(1);
                     color.vendor = reader.GetString(2);
+                    color.type = reader.GetString(3);
                     colors.Add(color);
                 }
 

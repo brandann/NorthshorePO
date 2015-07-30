@@ -46,7 +46,7 @@ namespace Inventory
         public Form1()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\NssmInventory.mdb; Persist Security Info=False;";
+            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
             databaseController = new DatabaseController();
             
             this.Size = new Size(760, 830);
@@ -72,6 +72,7 @@ namespace Inventory
             initNewPO();
             quantityunitcmb.Sorted = true;
         }
+        #endregion
 
         #region init
         private void reset()
@@ -371,8 +372,6 @@ namespace Inventory
         {
             DataViewPost(DataViewType.Purchaser);
         }
-        #endregion
-
         #endregion
 
         #region private Methods
@@ -826,7 +825,7 @@ namespace Inventory
         //
         //----------------------------------------------------------------------------
 
-        #region init
+        #region ITEM PANEL init
         public void NewItem(bool isMaterial, Form1 parent)
         {
             reset();
@@ -967,7 +966,7 @@ namespace Inventory
         }
         #endregion
 
-        #region Events
+        #region ITEM PANEL Events
         private void descriptionbtn_Click_1(object sender, EventArgs e)
         {
             if (item.isMaterial)
@@ -1034,9 +1033,72 @@ namespace Inventory
         {
             findHistory();
         }
+
+        private void widthtxt_TextChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+
+        private void heighttxt_TextChanged(object sender, EventArgs e)
+        {
+            findHistory();
+        }
+
+        private void orderitemlist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calctotal();
+        }
+
+        private void removeitem_Click(object sender, EventArgs e)
+        {
+            int index = orderitemlist.SelectedIndex;
+
+            if (index > -1)
+            {
+                orderitemlist.Items.RemoveAt(index);
+                OrderItems.RemoveAt(index);
+            }
+        }
+
+        private void loadprojectbtn_Click(object sender, EventArgs e)
+        {
+            var jobform = new Form3();
+            jobform.Show();
+            jobform.init(this);
+        }
+
+        public void SetJobFromLoader(string jobname, string jobnumber)
+        {
+            jobnumbertxt.Text = jobnumber;
+            projecttxt.Text = jobname;
+        }
+
+        private void addcatbtn_Click(object sender, EventArgs e)
+        {
+            AddCategoryForm form = new AddCategoryForm();
+            form.Show();
+        }
+
+        private void addmatbtn_Click(object sender, EventArgs e)
+        {
+            AddMaterialForm form = new AddMaterialForm();
+            form.Show();
+        }
+
+        private void addgaugebtn_Click(object sender, EventArgs e)
+        {
+            AddGaugeForm form = new AddGaugeForm();
+            form.Show();
+        }
+
+        private void addcolorbtn_Click(object sender, EventArgs e)
+        {
+            AddColorForm form = new AddColorForm();
+            form.Show();
+        }
         #endregion
 
-        #region Private
+        #region ITEM PANEL Private
         private InventoryOrderItem buildItem()
         {
             InventoryOrderItem Item = new InventoryOrderItem();
@@ -1139,50 +1201,6 @@ namespace Inventory
 
             return true;
         }
-
         #endregion
-
-        private void widthtxt_TextChanged(object sender, EventArgs e)
-        {
-            findHistory();
-        }
-
-        private void heighttxt_TextChanged(object sender, EventArgs e)
-        {
-            findHistory();
-        }
-
-        private void orderitemlist_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            calctotal();
-        }
-
-        private void removeitem_Click(object sender, EventArgs e)
-        {
-            int index = orderitemlist.SelectedIndex;
-
-            if (index > -1)
-            {
-                orderitemlist.Items.RemoveAt(index);
-                OrderItems.RemoveAt(index);
-            }
-        }
-
-        private void loadprojectbtn_Click(object sender, EventArgs e)
-        {
-            var jobform = new Form3();
-            jobform.Show();
-            jobform.init(this);
-        }
-
-        public void SetJobFromLoader(string jobname, string jobnumber)
-        {
-            jobnumbertxt.Text = jobnumber;
-            projecttxt.Text = jobname;
-        }
-
     }
 }
-
-//Provider=Microsoft.Jet.OLEDB.4.0;Data Source="N:\Receiving and current inventory\NssmInventory.mdb;"
-//Provider=Microsoft.ACE.OLEDB.12.0;Data Source=N:\Receiving and current inventory\NssmInventory.mdb; Persist Security Info=False;

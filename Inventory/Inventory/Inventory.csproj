@@ -28,7 +28,7 @@
     <SuiteName>NorthshoreSoftware</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -89,6 +89,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCategoryForm.Designer.cs">
+      <DependentUpon>AddCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddColorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddColorForm.Designer.cs">
+      <DependentUpon>AddColorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddGaugeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGaugeForm.Designer.cs">
+      <DependentUpon>AddGaugeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddMaterialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMaterialForm.Designer.cs">
+      <DependentUpon>AddMaterialForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CategoryTable.cs" />
     <Compile Include="ColorTable.cs" />
     <Compile Include="DatabaseController.cs" />
@@ -122,6 +146,18 @@
     <Compile Include="PurchaseOrderItem.cs" />
     <Compile Include="ThicknessTable.cs" />
     <Compile Include="VendorsTable.cs" />
+    <EmbeddedResource Include="AddCategoryForm.resx">
+      <DependentUpon>AddCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddColorForm.resx">
+      <DependentUpon>AddColorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddGaugeForm.resx">
+      <DependentUpon>AddGaugeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddMaterialForm.resx">
+      <DependentUpon>AddMaterialForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

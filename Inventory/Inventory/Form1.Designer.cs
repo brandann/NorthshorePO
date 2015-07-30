@@ -157,6 +157,10 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
+            this.addgaugebtn = new System.Windows.Forms.Button();
+            this.addmatbtn = new System.Windows.Forms.Button();
+            this.addcolorbtn = new System.Windows.Forms.Button();
+            this.addcatbtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
@@ -362,7 +366,7 @@
             this.POPanel.Controls.Add(this.PoNumbertxt);
             this.POPanel.Controls.Add(this.label1);
             this.POPanel.Controls.Add(this.getponumbtn);
-            this.POPanel.Location = new System.Drawing.Point(547, 12);
+            this.POPanel.Location = new System.Drawing.Point(812, 27);
             this.POPanel.Name = "POPanel";
             this.POPanel.Size = new System.Drawing.Size(722, 756);
             this.POPanel.TabIndex = 3;
@@ -1024,6 +1028,10 @@
             // 
             // ItemPanel
             // 
+            this.ItemPanel.Controls.Add(this.addcatbtn);
+            this.ItemPanel.Controls.Add(this.addcolorbtn);
+            this.ItemPanel.Controls.Add(this.addmatbtn);
+            this.ItemPanel.Controls.Add(this.addgaugebtn);
             this.ItemPanel.Controls.Add(this.AverageLabel);
             this.ItemPanel.Controls.Add(this.quantityunitcmb);
             this.ItemPanel.Controls.Add(this.HistoryList);
@@ -1388,6 +1396,46 @@
             this.unitpricetxt.TabIndex = 83;
             this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
             // 
+            // addgaugebtn
+            // 
+            this.addgaugebtn.Location = new System.Drawing.Point(338, 255);
+            this.addgaugebtn.Name = "addgaugebtn";
+            this.addgaugebtn.Size = new System.Drawing.Size(82, 23);
+            this.addgaugebtn.TabIndex = 96;
+            this.addgaugebtn.Text = "Add Gauge";
+            this.addgaugebtn.UseVisualStyleBackColor = true;
+            this.addgaugebtn.Click += new System.EventHandler(this.addgaugebtn_Click);
+            // 
+            // addmatbtn
+            // 
+            this.addmatbtn.Location = new System.Drawing.Point(338, 228);
+            this.addmatbtn.Name = "addmatbtn";
+            this.addmatbtn.Size = new System.Drawing.Size(82, 23);
+            this.addmatbtn.TabIndex = 97;
+            this.addmatbtn.Text = "Add Material";
+            this.addmatbtn.UseVisualStyleBackColor = true;
+            this.addmatbtn.Click += new System.EventHandler(this.addmatbtn_Click);
+            // 
+            // addcolorbtn
+            // 
+            this.addcolorbtn.Location = new System.Drawing.Point(338, 318);
+            this.addcolorbtn.Name = "addcolorbtn";
+            this.addcolorbtn.Size = new System.Drawing.Size(82, 23);
+            this.addcolorbtn.TabIndex = 98;
+            this.addcolorbtn.Text = "Add Color";
+            this.addcolorbtn.UseVisualStyleBackColor = true;
+            this.addcolorbtn.Click += new System.EventHandler(this.addcolorbtn_Click);
+            // 
+            // addcatbtn
+            // 
+            this.addcatbtn.Location = new System.Drawing.Point(338, 171);
+            this.addcatbtn.Name = "addcatbtn";
+            this.addcatbtn.Size = new System.Drawing.Size(82, 23);
+            this.addcatbtn.TabIndex = 99;
+            this.addcatbtn.Text = "Add Category";
+            this.addcatbtn.UseVisualStyleBackColor = true;
+            this.addcatbtn.Click += new System.EventHandler(this.addcatbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1551,6 +1599,10 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox unitpricetxt;
         private System.Windows.Forms.ComboBox quantityunitcmb;
+        private System.Windows.Forms.Button addcolorbtn;
+        private System.Windows.Forms.Button addmatbtn;
+        private System.Windows.Forms.Button addgaugebtn;
+        private System.Windows.Forms.Button addcatbtn;
     }
 }
 
