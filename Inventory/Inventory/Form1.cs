@@ -257,31 +257,19 @@ namespace Inventory
 
         private void submitbtn_Click(object sender, EventArgs e)
         {
-            if(isPOValid())
-            {
-                
-            }
-            else
+            if(!isPOValid())
             {
                 MessageBox.Show("ERROR: Purchase Order Not Valid, Please Check Fields");
                 return;
             }
 
-            if (SubmitPO())
-            {
-
-            }
-            else
+            if (!SubmitPO())
             {
                 MessageBox.Show("ERROR: Purchase Order Not inserted into database");
                 return;
             }
 
-            if (SavePO())
-            {
-
-            }
-            else
+            if (!SavePO())
             {
                 MessageBox.Show("ERROR: Purchase Order Not Saved");
                 return;
@@ -471,12 +459,10 @@ namespace Inventory
 
                 connection.Open();
                 command.ExecuteNonQuery();
-
-                //MessageBox.Show("Inserted: " + queue);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.ToString());
+                MessageBox.Show("Error Submitting PO Information");
                 connection.Close();
                 return false;
             }
@@ -532,6 +518,7 @@ namespace Inventory
             QA = QA + ")";
             QB = QB + "')";
 
+            QB.Replace("''", "' '");
             return QA + " " + QB;
         }
 
@@ -547,12 +534,10 @@ namespace Inventory
 
                 connection.Open();
                 command.ExecuteNonQuery();
-
-                //MessageBox.Show("Inserted: " + queue);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.ToString());
+                MessageBox.Show("Error Submitting Material Item.");
             }
             finally
             {
@@ -648,6 +633,7 @@ namespace Inventory
             QA = QA + ")";
             QB = QB + "')";
 
+            QB.Replace("''", "'-'");
             return QA + " " + QB;
         }
 
@@ -1202,5 +1188,10 @@ namespace Inventory
             return true;
         }
         #endregion
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\help.docx");
+        }
     }
 }
