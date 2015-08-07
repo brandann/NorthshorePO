@@ -1193,5 +1193,10 @@ namespace Inventory
         {
             System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\help.docx");
         }
+
+        private void openReadOnlyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\InventoryView.xlsm");
+        }
     }
 }

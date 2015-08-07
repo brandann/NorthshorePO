@@ -123,10 +123,8 @@
             this.savebtn = new System.Windows.Forms.Button();
             this.dataviewlist = new System.Windows.Forms.DataGridView();
             this.ItemPanel = new System.Windows.Forms.Panel();
+            this.label35 = new System.Windows.Forms.Label();
             this.addcatbtn = new System.Windows.Forms.Button();
-            this.addcolorbtn = new System.Windows.Forms.Button();
-            this.addmatbtn = new System.Windows.Forms.Button();
-            this.addgaugebtn = new System.Windows.Forms.Button();
             this.AverageLabel = new System.Windows.Forms.Label();
             this.quantityunitcmb = new System.Windows.Forms.ComboBox();
             this.HistoryList = new System.Windows.Forms.ListBox();
@@ -137,6 +135,9 @@
             this.itemsavebtn = new System.Windows.Forms.Button();
             this.materialpanel = new System.Windows.Forms.Panel();
             this.gaugecmb = new System.Windows.Forms.ComboBox();
+            this.addmatbtn = new System.Windows.Forms.Button();
+            this.addcolorbtn = new System.Windows.Forms.Button();
+            this.addgaugebtn = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.materialcmb = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -162,7 +163,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
+            this.openReadOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
@@ -243,17 +244,18 @@
             // 
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.openReadOnlyToolStripMenuItem});
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.inventoryToolStripMenuItem.Text = "Inventory";
-            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Visible = false;
             // 
             // viewToolStripMenuItem
             // 
@@ -266,8 +268,9 @@
             this.thicknessToolStripMenuItem1,
             this.purchasersToolStripMenuItem1});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Visible = false;
             // 
             // inventoryToolStripMenuItem1
             // 
@@ -1070,6 +1073,15 @@
             this.ItemPanel.TabIndex = 48;
             this.ItemPanel.Visible = false;
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(102, 44);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(148, 26);
+            this.label35.TabIndex = 100;
+            this.label35.Text = "Description is auto generated \r\nwhen adding a material item.\r\n";
+            // 
             // addcatbtn
             // 
             this.addcatbtn.Location = new System.Drawing.Point(338, 212);
@@ -1079,36 +1091,6 @@
             this.addcatbtn.Text = "Add Category";
             this.addcatbtn.UseVisualStyleBackColor = true;
             this.addcatbtn.Click += new System.EventHandler(this.addcatbtn_Click);
-            // 
-            // addcolorbtn
-            // 
-            this.addcolorbtn.Location = new System.Drawing.Point(330, 91);
-            this.addcolorbtn.Name = "addcolorbtn";
-            this.addcolorbtn.Size = new System.Drawing.Size(82, 23);
-            this.addcolorbtn.TabIndex = 98;
-            this.addcolorbtn.Text = "Add Color";
-            this.addcolorbtn.UseVisualStyleBackColor = true;
-            this.addcolorbtn.Click += new System.EventHandler(this.addcolorbtn_Click);
-            // 
-            // addmatbtn
-            // 
-            this.addmatbtn.Location = new System.Drawing.Point(330, 1);
-            this.addmatbtn.Name = "addmatbtn";
-            this.addmatbtn.Size = new System.Drawing.Size(82, 23);
-            this.addmatbtn.TabIndex = 97;
-            this.addmatbtn.Text = "Add Material";
-            this.addmatbtn.UseVisualStyleBackColor = true;
-            this.addmatbtn.Click += new System.EventHandler(this.addmatbtn_Click);
-            // 
-            // addgaugebtn
-            // 
-            this.addgaugebtn.Location = new System.Drawing.Point(330, 28);
-            this.addgaugebtn.Name = "addgaugebtn";
-            this.addgaugebtn.Size = new System.Drawing.Size(82, 23);
-            this.addgaugebtn.TabIndex = 96;
-            this.addgaugebtn.Text = "Add Gauge";
-            this.addgaugebtn.UseVisualStyleBackColor = true;
-            this.addgaugebtn.Click += new System.EventHandler(this.addgaugebtn_Click);
             // 
             // AverageLabel
             // 
@@ -1225,6 +1207,36 @@
             this.gaugecmb.Size = new System.Drawing.Size(229, 21);
             this.gaugecmb.TabIndex = 70;
             this.gaugecmb.SelectedIndexChanged += new System.EventHandler(this.gaugecmb_SelectedIndexChanged);
+            // 
+            // addmatbtn
+            // 
+            this.addmatbtn.Location = new System.Drawing.Point(330, 1);
+            this.addmatbtn.Name = "addmatbtn";
+            this.addmatbtn.Size = new System.Drawing.Size(82, 23);
+            this.addmatbtn.TabIndex = 97;
+            this.addmatbtn.Text = "Add Material";
+            this.addmatbtn.UseVisualStyleBackColor = true;
+            this.addmatbtn.Click += new System.EventHandler(this.addmatbtn_Click);
+            // 
+            // addcolorbtn
+            // 
+            this.addcolorbtn.Location = new System.Drawing.Point(330, 91);
+            this.addcolorbtn.Name = "addcolorbtn";
+            this.addcolorbtn.Size = new System.Drawing.Size(82, 23);
+            this.addcolorbtn.TabIndex = 98;
+            this.addcolorbtn.Text = "Add Color";
+            this.addcolorbtn.UseVisualStyleBackColor = true;
+            this.addcolorbtn.Click += new System.EventHandler(this.addcolorbtn_Click);
+            // 
+            // addgaugebtn
+            // 
+            this.addgaugebtn.Location = new System.Drawing.Point(330, 28);
+            this.addgaugebtn.Name = "addgaugebtn";
+            this.addgaugebtn.Size = new System.Drawing.Size(82, 23);
+            this.addgaugebtn.TabIndex = 96;
+            this.addgaugebtn.Text = "Add Gauge";
+            this.addgaugebtn.UseVisualStyleBackColor = true;
+            this.addgaugebtn.Click += new System.EventHandler(this.addgaugebtn_Click);
             // 
             // label23
             // 
@@ -1447,14 +1459,12 @@
             this.unitpricetxt.TabIndex = 83;
             this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
             // 
-            // label35
+            // openReadOnlyToolStripMenuItem
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(102, 44);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(148, 26);
-            this.label35.TabIndex = 100;
-            this.label35.Text = "Description is auto generated \r\nwhen adding a material item.\r\n";
+            this.openReadOnlyToolStripMenuItem.Name = "openReadOnlyToolStripMenuItem";
+            this.openReadOnlyToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.openReadOnlyToolStripMenuItem.Text = "Open Read Only";
+            this.openReadOnlyToolStripMenuItem.Click += new System.EventHandler(this.openReadOnlyToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1625,6 +1635,7 @@
         private System.Windows.Forms.Button addcatbtn;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ToolStripMenuItem openReadOnlyToolStripMenuItem;
     }
 }
 
