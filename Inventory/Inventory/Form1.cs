@@ -77,6 +77,7 @@ namespace Inventory
         #region init
         private void reset()
         {
+            this.Size = new Size(760, 830);
             resetItem();
             POPanel.Visible = false;
             lookupPanel.Visible = false;
@@ -537,7 +538,7 @@ namespace Inventory
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Submitting Material Item.");
+                MessageBox.Show("Error Submitting Material Item. " + ex);
             }
             finally
             {
@@ -555,11 +556,18 @@ namespace Inventory
             QA = QA + "PO_NUMBER,";
             QB = QB + PoNumbertxt.Text + "','";
 
+            
+
             QA = QA + "ORDER_BY,";
             QB = QB + purchasercmb.Text + "','";
 
+            QA = QA + "DATE_ORDERED,";
+            QB = QB + orderdate.Value.Year + "-" + orderdate.Value.Month + "-" + orderdate.Value.Day + "','";
+
             QA = QA + "PROJECT,";
             QB = QB + projecttxt.Text + "','";
+
+            
 
             QA = QA + "JOB_NUMBER,";
             QB = QB + jobnumbertxt.Text + "','";
@@ -567,73 +575,57 @@ namespace Inventory
             QA = QA + "VENDOR,";
             QB = QB + vendorcmb.Text + "','";
 
-            QA = QA + "ATTN,";
-            QB = QB + attntxt.Text + "','";
+            QA = QA + "GAUGE,";
+            QB = QB + ioi.gauge + "','";
 
-            QA = QA + "DATE_ORDERED,";
-            QB = QB + orderdate.Value.Year + "-" + orderdate.Value.Month + "-" + orderdate.Value.Day + "','";
+            QA = QA + "DESCRIPTION,";
+            QB = QB + ioi.description + "','";
+            
+            
+
+            QA = QA + "SHEET_SIZE,";
+            QB = QB + ioi.width.ToString() + " x " + ioi.height.ToString() + " " + ioi.size_unit + "','";
+
+            QA = QA + "MATERIAL,";
+            QB = QB + ioi.material + "','";
 
             QA = QA + "ETA,";
             QB = QB + deliverydate.Value.Year + "-" + deliverydate.Value.Month + "-" + deliverydate.Value.Day + "','";
 
             QA = QA + "ATA,";
-            QB = QB + " " + "','";
-
-            //================================================================
-
-            QA = QA + "DESCRIPTION,";
-            QB = QB + ioi.description + "','";
-
+            QB = QB + "-" + "','";
+//------------------------------------------------------------
             QA = QA + "QUANTITY,";
             QB = QB + ioi.quantity + "','";
 
-            QA = QA + "UNIT,";
-            QB = QB + ioi.unit + "','";
+            QA = QA + "INVENTORY_QUANTITY,";
+            QB = QB + "-" + "','";
 
             QA = QA + "UNIT_COST,";
             QB = QB + ioi.unit_price + "','";
 
+            QA = QA + "UNIT,";
+            QB = QB + "-" + "','"; //ioi.unit + "','";
+
             QA = QA + "TOTAL,";
             QB = QB + ioi.total + "','";
-
-            //================================================================
-
-            QA = QA + "STOCK_ITEM,"; //designation;
-            QB = QB + ioi.designation + "','";
-
-            QA = QA + "MATERIAL_ITEM,"; //category;
-            QB = QB + ioi.category + "','";
-
-            QA = QA + "STATUS,";
-            QB = QB + ioi.status + "','";
-
-            //================================================================
-
-            QA = QA + "GAUGE,";
-            QB = QB + ioi.gauge + "','";
-
-            QA = QA + "MATERIAL,";
-            QB = QB + ioi.material + "','";
 
             QA = QA + "COLOR,";
             QB = QB + ioi.color + "','";
 
-            QA = QA + "WIDTH,";
-            QB = QB + ioi.width + "','";
+            QA = QA + "MATERIAL_ITEM,"; //category;
+            QB = QB + ioi.category + "','";
 
-            QA = QA + "HEIGHT,";
-            QB = QB + ioi.height + "','";
+            QA = QA + "STOCK_ITEM,"; //designation;
+            QB = QB + ioi.designation + "','";
 
-            QA = QA + "UNITS,";
-            QB = QB + ioi.size_unit + "','";
-
-            QA = QA + "SHEET_SIZE";
-            QB = QB + ioi.width + " x " + ioi.height + " " + ioi.size_unit;
-
+            QA = QA + "STATUS";
+            QB = QB + ioi.status;
+            
             QA = QA + ")";
             QB = QB + "')";
 
-            QB.Replace("''", "'-'");
+            //QB.Replace("''", "'-'");
             return QA + " " + QB;
         }
 
@@ -815,6 +807,7 @@ namespace Inventory
         public void NewItem(bool isMaterial, Form1 parent)
         {
             reset();
+            this.Size = new Size(370, 560);
             ItemPanel.Visible = true;
             item = new InventoryOrderItem();
             item.isMaterial = isMaterial;
@@ -1197,6 +1190,30 @@ namespace Inventory
         private void openReadOnlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\InventoryView.xlsm");
+        }
+
+        private void addCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddCategoryForm form = new AddCategoryForm();
+            form.Show();
+        }
+
+        private void addMaterialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddMaterialForm form = new AddMaterialForm();
+            form.Show();
+        }
+
+        private void addGaugeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddGaugeForm form = new AddGaugeForm();
+            form.Show();
+        }
+
+        private void addColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddColorForm form = new AddColorForm();
+            form.Show();
         }
     }
 }
