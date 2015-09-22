@@ -129,7 +129,7 @@
             this.savebtn = new System.Windows.Forms.Button();
             this.dataviewlist = new System.Windows.Forms.DataGridView();
             this.ItemPanel = new System.Windows.Forms.Panel();
-            this.label35 = new System.Windows.Forms.Label();
+            this.desnotelbl = new System.Windows.Forms.Label();
             this.addcatbtn = new System.Windows.Forms.Button();
             this.AverageLabel = new System.Windows.Forms.Label();
             this.quantityunitcmb = new System.Windows.Forms.ComboBox();
@@ -169,6 +169,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.unitpricetxt = new System.Windows.Forms.TextBox();
+            this.addVendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.POPanel.SuspendLayout();
             this.lookupPanel.SuspendLayout();
@@ -340,7 +341,8 @@
             this.addCategoryToolStripMenuItem,
             this.addMaterialToolStripMenuItem,
             this.addGaugeToolStripMenuItem,
-            this.addColorToolStripMenuItem});
+            this.addColorToolStripMenuItem,
+            this.addVendorToolStripMenuItem});
             this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
             this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.databaseToolStripMenuItem.Text = "Database";
@@ -348,28 +350,28 @@
             // addCategoryToolStripMenuItem
             // 
             this.addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-            this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addCategoryToolStripMenuItem.Text = "Add Category";
             this.addCategoryToolStripMenuItem.Click += new System.EventHandler(this.addCategoryToolStripMenuItem_Click);
             // 
             // addMaterialToolStripMenuItem
             // 
             this.addMaterialToolStripMenuItem.Name = "addMaterialToolStripMenuItem";
-            this.addMaterialToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.addMaterialToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addMaterialToolStripMenuItem.Text = "Add Material";
             this.addMaterialToolStripMenuItem.Click += new System.EventHandler(this.addMaterialToolStripMenuItem_Click);
             // 
             // addGaugeToolStripMenuItem
             // 
             this.addGaugeToolStripMenuItem.Name = "addGaugeToolStripMenuItem";
-            this.addGaugeToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.addGaugeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addGaugeToolStripMenuItem.Text = "Add Thickness";
             this.addGaugeToolStripMenuItem.Click += new System.EventHandler(this.addGaugeToolStripMenuItem_Click);
             // 
             // addColorToolStripMenuItem
             // 
             this.addColorToolStripMenuItem.Name = "addColorToolStripMenuItem";
-            this.addColorToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.addColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addColorToolStripMenuItem.Text = "Add Color";
             this.addColorToolStripMenuItem.Click += new System.EventHandler(this.addColorToolStripMenuItem_Click);
             // 
@@ -637,6 +639,7 @@
             this.shippingcmb.Name = "shippingcmb";
             this.shippingcmb.Size = new System.Drawing.Size(218, 21);
             this.shippingcmb.TabIndex = 23;
+            this.shippingcmb.SelectedIndexChanged += new System.EventHandler(this.shippingcmb_SelectedIndexChanged);
             // 
             // address1txt
             // 
@@ -657,6 +660,7 @@
             // 
             // vendorcmb
             // 
+            this.vendorcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vendorcmb.FormattingEnabled = true;
             this.vendorcmb.Location = new System.Drawing.Point(101, 73);
             this.vendorcmb.Name = "vendorcmb";
@@ -1092,7 +1096,7 @@
             // 
             // ItemPanel
             // 
-            this.ItemPanel.Controls.Add(this.label35);
+            this.ItemPanel.Controls.Add(this.desnotelbl);
             this.ItemPanel.Controls.Add(this.addcatbtn);
             this.ItemPanel.Controls.Add(this.AverageLabel);
             this.ItemPanel.Controls.Add(this.quantityunitcmb);
@@ -1124,14 +1128,14 @@
             this.ItemPanel.TabIndex = 48;
             this.ItemPanel.Visible = false;
             // 
-            // label35
+            // desnotelbl
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(102, 44);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(148, 26);
-            this.label35.TabIndex = 100;
-            this.label35.Text = "Description is auto generated \r\nwhen adding a material item.\r\n";
+            this.desnotelbl.AutoSize = true;
+            this.desnotelbl.Location = new System.Drawing.Point(102, 44);
+            this.desnotelbl.Name = "desnotelbl";
+            this.desnotelbl.Size = new System.Drawing.Size(148, 26);
+            this.desnotelbl.TabIndex = 100;
+            this.desnotelbl.Text = "Description is auto generated \r\nwhen adding a material item.\r\n";
             // 
             // addcatbtn
             // 
@@ -1234,7 +1238,6 @@
             this.materialpanel.Controls.Add(this.sizeunitcmb);
             this.materialpanel.Controls.Add(this.label27);
             this.materialpanel.Controls.Add(this.heighttxt);
-            this.materialpanel.Enabled = false;
             this.materialpanel.Location = new System.Drawing.Point(8, 266);
             this.materialpanel.Name = "materialpanel";
             this.materialpanel.Size = new System.Drawing.Size(427, 176);
@@ -1244,7 +1247,7 @@
             // 
             this.gaugecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gaugecmb.FormattingEnabled = true;
-            this.gaugecmb.Location = new System.Drawing.Point(95, 30);
+            this.gaugecmb.Location = new System.Drawing.Point(95, 50);
             this.gaugecmb.Name = "gaugecmb";
             this.gaugecmb.Size = new System.Drawing.Size(229, 21);
             this.gaugecmb.TabIndex = 70;
@@ -1252,7 +1255,7 @@
             // 
             // addmatbtn
             // 
-            this.addmatbtn.Location = new System.Drawing.Point(330, 1);
+            this.addmatbtn.Location = new System.Drawing.Point(330, 21);
             this.addmatbtn.Name = "addmatbtn";
             this.addmatbtn.Size = new System.Drawing.Size(82, 23);
             this.addmatbtn.TabIndex = 97;
@@ -1263,7 +1266,7 @@
             // 
             // addcolorbtn
             // 
-            this.addcolorbtn.Location = new System.Drawing.Point(330, 91);
+            this.addcolorbtn.Location = new System.Drawing.Point(330, 75);
             this.addcolorbtn.Name = "addcolorbtn";
             this.addcolorbtn.Size = new System.Drawing.Size(82, 23);
             this.addcolorbtn.TabIndex = 98;
@@ -1274,7 +1277,7 @@
             // 
             // addgaugebtn
             // 
-            this.addgaugebtn.Location = new System.Drawing.Point(330, 28);
+            this.addgaugebtn.Location = new System.Drawing.Point(330, 48);
             this.addgaugebtn.Name = "addgaugebtn";
             this.addgaugebtn.Size = new System.Drawing.Size(82, 23);
             this.addgaugebtn.TabIndex = 96;
@@ -1286,7 +1289,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(12, 6);
+            this.label23.Location = new System.Drawing.Point(12, 26);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(44, 13);
             this.label23.TabIndex = 58;
@@ -1296,7 +1299,7 @@
             // 
             this.materialcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.materialcmb.FormattingEnabled = true;
-            this.materialcmb.Location = new System.Drawing.Point(95, 3);
+            this.materialcmb.Location = new System.Drawing.Point(95, 23);
             this.materialcmb.Name = "materialcmb";
             this.materialcmb.Size = new System.Drawing.Size(229, 21);
             this.materialcmb.TabIndex = 69;
@@ -1305,7 +1308,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(12, 33);
+            this.label24.Location = new System.Drawing.Point(12, 53);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(39, 13);
             this.label24.TabIndex = 56;
@@ -1315,7 +1318,7 @@
             // 
             this.colorcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.colorcmb.FormattingEnabled = true;
-            this.colorcmb.Location = new System.Drawing.Point(95, 93);
+            this.colorcmb.Location = new System.Drawing.Point(95, 77);
             this.colorcmb.Name = "colorcmb";
             this.colorcmb.Size = new System.Drawing.Size(229, 21);
             this.colorcmb.TabIndex = 41;
@@ -1324,7 +1327,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(12, 96);
+            this.label25.Location = new System.Drawing.Point(12, 80);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(31, 13);
             this.label25.TabIndex = 60;
@@ -1333,7 +1336,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(12, 123);
+            this.label26.Location = new System.Drawing.Point(12, 107);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(35, 13);
             this.label26.TabIndex = 62;
@@ -1341,7 +1344,7 @@
             // 
             // widthtxt
             // 
-            this.widthtxt.Location = new System.Drawing.Point(95, 120);
+            this.widthtxt.Location = new System.Drawing.Point(95, 104);
             this.widthtxt.Name = "widthtxt";
             this.widthtxt.Size = new System.Drawing.Size(129, 20);
             this.widthtxt.TabIndex = 63;
@@ -1351,7 +1354,7 @@
             // 
             this.sizeunitcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeunitcmb.FormattingEnabled = true;
-            this.sizeunitcmb.Location = new System.Drawing.Point(239, 146);
+            this.sizeunitcmb.Location = new System.Drawing.Point(239, 130);
             this.sizeunitcmb.Name = "sizeunitcmb";
             this.sizeunitcmb.Size = new System.Drawing.Size(85, 21);
             this.sizeunitcmb.TabIndex = 40;
@@ -1360,7 +1363,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(12, 150);
+            this.label27.Location = new System.Drawing.Point(12, 134);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(38, 13);
             this.label27.TabIndex = 65;
@@ -1368,7 +1371,7 @@
             // 
             // heighttxt
             // 
-            this.heighttxt.Location = new System.Drawing.Point(95, 147);
+            this.heighttxt.Location = new System.Drawing.Point(95, 131);
             this.heighttxt.Name = "heighttxt";
             this.heighttxt.Size = new System.Drawing.Size(129, 20);
             this.heighttxt.TabIndex = 66;
@@ -1514,6 +1517,13 @@
             this.unitpricetxt.TabIndex = 83;
             this.unitpricetxt.TextChanged += new System.EventHandler(this.unitpricetxt_TextChanged_1);
             // 
+            // addVendorToolStripMenuItem
+            // 
+            this.addVendorToolStripMenuItem.Name = "addVendorToolStripMenuItem";
+            this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addVendorToolStripMenuItem.Text = "Add Vendor";
+            this.addVendorToolStripMenuItem.Click += new System.EventHandler(this.addVendorToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1524,6 +1534,7 @@
             this.Controls.Add(this.InventoryViewPanel);
             this.Controls.Add(this.lookupPanel);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -1682,13 +1693,14 @@
         private System.Windows.Forms.Button addgaugebtn;
         private System.Windows.Forms.Button addcatbtn;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label desnotelbl;
         private System.Windows.Forms.ToolStripMenuItem openReadOnlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMaterialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addGaugeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addVendorToolStripMenuItem;
     }
 }
 

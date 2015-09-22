@@ -31,8 +31,6 @@ namespace Inventory
         public string addressName;
         public string addressStreet;
         public string addressCity;
-        public string addressState;
-        public string addressZip;
 
         public DateTime date;
         public DateTime deliveryETA;

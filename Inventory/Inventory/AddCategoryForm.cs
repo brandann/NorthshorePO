@@ -50,6 +50,13 @@ namespace Inventory
                 MessageBox.Show("Error: " + ex.ToString());
                 connection.Close();
             }
+            parent.UpdateLists();
+        }
+
+        Form1 parent;
+        public void SetParent(Form1 paraentform)
+        {
+            parent = paraentform;
         }
     }
 }

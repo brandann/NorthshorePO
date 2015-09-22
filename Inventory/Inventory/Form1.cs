@@ -190,11 +190,53 @@ namespace Inventory
         {
             shippingcmb.Items.Add("Northshore Sheet Metal, Inc.");
             shippingcmb.Items.Add("Northclad, Inc.");
+            shippingcmb.Items.Add("Facade Supply");
+
+            shippingcmb.Items.Add("Northshore Sheet Metal, Inc. Shop 2");
+            shippingcmb.Items.Add("Northclad, Inc. Shop 2");
+            shippingcmb.Items.Add("Facade Supply Shop 2");
+
             shippingcmb.SelectedIndex = 0;
+        }
+
+        private void shippingcmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (shippingcmb.Text == "Northshore Sheet Metal, Inc.")
+            {
+                address1txt.Text = "11831 Beverly Park RD. Bldg C.";
+                address2txt.Text = "Everett, WA 98204";
+            }
+            else if (shippingcmb.Text == "Northclad, Inc.")
+            {
+                address1txt.Text = "11831 Beverly Park RD. Bldg C.";
+                address2txt.Text = "Everett, WA 98204";
+            }
+            else if (shippingcmb.Text == "Facade Supply")
+            {
+                address1txt.Text = "11831 Beverly Park RD. Bldg C.";
+                address2txt.Text = "Everett, WA 98204";
+            }
+            else if (shippingcmb.Text == "Northshore Sheet Metal, Inc. Shop 2")
+            {
+                address1txt.Text = "2822 119th Street SW";
+                address2txt.Text = "Everett, WA 98204";
+            }
+            else if (shippingcmb.Text == "Northclad, Inc. Shop 2")
+            {
+                address1txt.Text = "2822 119th Street SW";
+                address2txt.Text = "Everett, WA 98204";
+            }
+            else if (shippingcmb.Text == "Facade Supply Shop 2")
+            {
+                address1txt.Text = "2822 119th Street SW";
+                address2txt.Text = "Everett, WA 98204";
+            }
         }
 
         private void fillVendorComboBox()
         {
+            vendorcmb.Items.Clear();
+
             List<VendorsTable> vendors = databaseController.GetVendors();
             for(int i = 0; i < vendors.Count; i++)
             {
@@ -204,6 +246,7 @@ namespace Inventory
 
         private void fillPurchaserComboBox()
         {
+            purchasercmb.Items.Clear();
             purchasers = new List<Purchaser>();
             List<PurchasersTable> p = databaseController.GetPurchasers();
             for (int i = 0; i < p.Count; i++)
@@ -249,6 +292,7 @@ namespace Inventory
         private void addmaterial_Click(object sender, EventArgs e)
         {
             NewItem(true, this);
+
         }
 
         private void addother_Click(object sender, EventArgs e)
@@ -434,7 +478,7 @@ namespace Inventory
                 return;
             }
 
-            PoNumbertxt.Text = ponum + "-" + initials;
+            PoNumbertxt.Text = ponum + "" + initials;
         }
 
         private void calctotal()
@@ -706,6 +750,8 @@ namespace Inventory
             MySheet.Cells[5, 6] = attntxt.Text;
 
             MySheet.Cells[6, 3] = shippingcmb.Text;
+            MySheet.Cells[7, 3] = address1txt.Text;
+            MySheet.Cells[8, 3] = address2txt.Text;
 
             MySheet.Cells[7, 6] = orderdate.Value.Year + "-" + orderdate.Value.Month + "-" + orderdate.Value.Day;
             MySheet.Cells[8, 6] = deliverydate.Value.Year + "-" + deliverydate.Value.Month + "-" + deliverydate.Value.Day;
@@ -822,8 +868,6 @@ namespace Inventory
             newItem = true;
             item_index = -1;
 
-            materialpanel.Enabled = item.isMaterial;
-
             sizeunitcmb.SelectedItem = "IN";
 
             hidecmb.SelectedItem = "NO";
@@ -832,12 +876,19 @@ namespace Inventory
 
             if(isMaterial)
             {
+                desnotelbl.Visible = true;
                 descriptiontxt.Enabled = false;
-                //descriptionbtn.Enabled = false;
+
+                materialpanel.Enabled = true;
+                materialpanel.Visible = true;
             }
             else
             {
                 descriptiontxt.Enabled = true;
+                descriptiontxt.Visible = true;
+                desnotelbl.Visible = false;
+
+                materialpanel.Visible = false;
             }
 
         }
@@ -877,6 +928,7 @@ namespace Inventory
 
         private void fillMaterialComboBox()
         {
+            materialcmb.Items.Clear();
             DatabaseController dc = new DatabaseController();
             materials = dc.GetMaterial();
 
@@ -888,6 +940,7 @@ namespace Inventory
 
         private void fillGaugeComboBox()
         {
+            gaugecmb.Items.Clear();
             DatabaseController dc = new DatabaseController();
             List<ThicknessTable> gauges = dc.GetThickness();
 
@@ -899,6 +952,7 @@ namespace Inventory
 
         private void fillColorComboBox()
         {
+            colorcmb.Items.Clear();
             DatabaseController dc = new DatabaseController();
             List<ColorTable> colors = dc.GetColor();
 
@@ -906,7 +960,10 @@ namespace Inventory
 
             for (int i = 0; i < colors.Count; i++)
             {
-                colorcmb.Items.Add(colors[i].color);
+                if(!colorcmb.Items.Contains(colors[i].color))
+                {
+                    colorcmb.Items.Add(colors[i].color);
+                }
             }
         }
 
@@ -929,6 +986,7 @@ namespace Inventory
 
         private void fillCategoryComboBox()
         {
+            categorycmb.Items.Clear();
             DatabaseController dc = new DatabaseController();
             List<CategoryTable> categories = dc.GetCategory();
 
@@ -1104,6 +1162,8 @@ namespace Inventory
 
             Item.isMaterial = item.isMaterial;
 
+            
+
             return Item;
         }
 
@@ -1199,24 +1259,51 @@ namespace Inventory
         {
             AddCategoryForm form = new AddCategoryForm();
             form.Show();
+            form.SetParent(this);
         }
 
         private void addMaterialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddMaterialForm form = new AddMaterialForm();
             form.Show();
+            form.SetParent(this);
         }
 
         private void addGaugeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddGaugeForm form = new AddGaugeForm();
             form.Show();
+            form.SetParent(this);
         }
 
         private void addColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddColorForm form = new AddColorForm();
             form.Show();
+            form.SetParent(this);
         }
+
+        private void addVendorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddVendorForm form = new AddVendorForm();
+            form.Show();
+            form.SetParent(this);
+        }
+
+        private void linkLabel1_MouseHover(object sender, EventArgs e)
+        {
+        }
+
+        public void UpdateLists()
+        {
+            fillMaterialComboBox();
+            fillGaugeComboBox();
+            fillColorComboBox();
+            fillCategoryComboBox();
+            fillVendorComboBox();
+
+            fillPurchaserComboBox();
+        }
+                
     }
 }

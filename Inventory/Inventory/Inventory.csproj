@@ -27,7 +27,7 @@
     <PublisherName>Material Inventory</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -135,6 +135,12 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddVendorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddVendorForm.Designer.cs">
+      <DependentUpon>AddVendorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaterialInventoryTable.cs" />
     <Compile Include="MaterialTable.cs" />
     <Compile Include="PurchaserOrderTable.cs" />
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddMaterialForm.resx">
       <DependentUpon>AddMaterialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddVendorForm.resx">
+      <DependentUpon>AddVendorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

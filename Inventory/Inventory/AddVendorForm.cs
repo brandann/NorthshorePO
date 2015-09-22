@@ -11,38 +11,39 @@ using System.Data.OleDb;
 
 namespace Inventory
 {
-    public partial class AddMaterialForm : Form
+    public partial class AddVendorForm : Form
     {
-        private OleDbConnection connection = new OleDbConnection();
 
-        public AddMaterialForm()
+        private OleDbConnection connection = new OleDbConnection();
+        public AddVendorForm()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
         }
 
-        private void addbtn_Click(object sender, EventArgs e)
+        private void okbtn_Click(object sender, EventArgs e)
         {
-            string type = textBox1.Text;
-            string width = textBox2.Text;
-            string height = textBox3.Text;
-            
-            Submit(type, width, height);
+            string vendor = textBox1.Text;
+            bool valid = true;
+
+            if (null == vendor || "" == vendor) { valid = false; }
+            if (valid) { Submit(vendor); }
+            else { MessageBox.Show("Data Error"); }
         }
 
-        private void Submit(string type, string width, string height)
+        private void Submit(string vendor)
         {
             try
             {
                 var command = new OleDbCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO Materials (MATERIAL_TYPE, DEFAULT_WIDTH, DEFAULT_HEIGHT) VALUES('" + type + "', '" + width + "', '" + height + "')";
+                command.CommandText = "INSERT INTO Vendors (VENDOR, CONTACT) VALUES('" + vendor + "', '" + "-" + "')";
 
                 connection.Open();
                 command.ExecuteNonQuery();
 
                 connection.Close();
-                MessageBox.Show("Category Inserted");
+                MessageBox.Show("Vendor Inserted");
             }
             catch (Exception ex)
             {
