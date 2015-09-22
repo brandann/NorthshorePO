@@ -902,6 +902,8 @@ namespace Inventory
             DatabaseController dc = new DatabaseController();
             List<ColorTable> colors = dc.GetColor();
 
+            colors.Sort();
+
             for (int i = 0; i < colors.Count; i++)
             {
                 colorcmb.Items.Add(colors[i].color);
@@ -1189,6 +1191,7 @@ namespace Inventory
 
         private void openReadOnlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Update Excel Inventory by pressing Data>Connections>Refresh All to see the current Inventory data");
             System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\InventoryView.xlsm");
         }
 
