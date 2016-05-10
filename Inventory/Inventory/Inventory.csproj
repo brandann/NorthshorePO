@@ -27,15 +27,15 @@
     <PublisherName>Material Inventory</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>18</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationVersion>2016.05.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -43,6 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,7 +73,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -88,92 +89,131 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCategoryForm.cs">
+    <Compile Include="Form_Lookup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCategoryForm.Designer.cs">
+    <Compile Include="Form_Lookup.Designer.cs">
+      <DependentUpon>Form_Lookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\BuildQueue.cs" />
+    <Compile Include="Forms\AddCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddCategoryForm.Designer.cs">
       <DependentUpon>AddCategoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddColorForm.cs">
+    <Compile Include="Forms\AddColorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddColorForm.Designer.cs">
+    <Compile Include="Forms\AddColorForm.Designer.cs">
       <DependentUpon>AddColorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddGaugeForm.cs">
+    <Compile Include="Forms\AddGaugeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddGaugeForm.Designer.cs">
+    <Compile Include="Forms\AddGaugeForm.Designer.cs">
       <DependentUpon>AddGaugeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddMaterialForm.cs">
+    <Compile Include="Forms\AddMaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddMaterialForm.Designer.cs">
+    <Compile Include="Forms\AddMaterialForm.Designer.cs">
       <DependentUpon>AddMaterialForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CategoryTable.cs" />
-    <Compile Include="ColorTable.cs" />
-    <Compile Include="DatabaseController.cs" />
-    <Compile Include="DatabaseTable.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form_AddItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Form_AddItem.Designer.cs">
+      <DependentUpon>Form_AddItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1Data.cs" />
-    <Compile Include="Form2.cs">
+    <Compile Include="Forms\Form_AddMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Forms\Form_AddMaterial.Designer.cs">
+      <DependentUpon>Form_AddMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Forms\Form_Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Forms\Form_Home.Designer.cs">
+      <DependentUpon>Form_Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddVendorForm.cs">
+    <Compile Include="Forms\Form_POView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddVendorForm.Designer.cs">
+    <Compile Include="Forms\Form_POView.Designer.cs">
+      <DependentUpon>Form_POView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\POInformation.cs" />
+    <Compile Include="Scripts\Objects\Purchaser.cs" />
+    <Compile Include="Scripts\Objects\CategoryTable.cs" />
+    <Compile Include="Scripts\Objects\ColorTable.cs" />
+    <Compile Include="Scripts\DatabaseController.cs" />
+    <Compile Include="Scripts\Objects\DatabaseTable.cs" />
+    <Compile Include="Forms\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Form_LoadJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_LoadJob.Designer.cs">
+      <DependentUpon>Form_LoadJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddVendorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddVendorForm.Designer.cs">
       <DependentUpon>AddVendorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialInventoryTable.cs" />
-    <Compile Include="MaterialTable.cs" />
-    <Compile Include="PurchaserOrderTable.cs" />
-    <Compile Include="PurchasersTable.cs" />
-    <Compile Include="InventoryOrderItem.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Scripts\Objects\InventoryDatabase.cs" />
+    <Compile Include="Scripts\Objects\MaterialInventoryTable.cs" />
+    <Compile Include="Scripts\Objects\MaterialTable.cs" />
+    <Compile Include="Scripts\Objects\PurchaserOrderTable.cs" />
+    <Compile Include="Scripts\Objects\PurchasersTable.cs" />
+    <Compile Include="Scripts\Objects\InventoryOrderItem.cs" />
+    <Compile Include="Scripts\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseOrderItem.cs" />
-    <Compile Include="ThicknessTable.cs" />
-    <Compile Include="VendorsTable.cs" />
-    <EmbeddedResource Include="AddCategoryForm.resx">
+    <Compile Include="Scripts\Objects\PurchaseOrderItem.cs" />
+    <Compile Include="Scripts\Objects\ThicknessTable.cs" />
+    <Compile Include="Scripts\Objects\VendorsTable.cs" />
+    <EmbeddedResource Include="Forms\AddCategoryForm.resx">
       <DependentUpon>AddCategoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddColorForm.resx">
+    <EmbeddedResource Include="Forms\AddColorForm.resx">
       <DependentUpon>AddColorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddGaugeForm.resx">
+    <EmbeddedResource Include="Forms\AddGaugeForm.resx">
       <DependentUpon>AddGaugeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddMaterialForm.resx">
+    <EmbeddedResource Include="Forms\AddMaterialForm.resx">
       <DependentUpon>AddMaterialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddVendorForm.resx">
+    <EmbeddedResource Include="Forms\AddVendorForm.resx">
       <DependentUpon>AddVendorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Form_AddItem.resx">
+      <DependentUpon>Form_AddItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Form_LoadJob.resx">
+      <DependentUpon>Form_LoadJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_AddMaterial.resx">
+      <DependentUpon>Form_AddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_Home.resx">
+      <DependentUpon>Form_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_POView.resx">
+      <DependentUpon>Form_POView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Lookup.resx">
+      <DependentUpon>Form_Lookup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,6 +223,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Inventory_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
@@ -204,6 +245,15 @@
     <Content Include="NssmInventory.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\dark_doc.png" />
+    <None Include="Resources\dark_pencil.png" />
+    <None Include="Resources\dark_search.png" />
+    <None Include="Resources\dark_add%402x.png" />
+    <None Include="Resources\dark_add.png" />
+    <None Include="Resources\dark_book%402x.png" />
+    <None Include="Resources\dark_pencil%402x.png" />
+    <None Include="Resources\dark_search%402x.png" />
+    <None Include="Resources\dark_doc%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -250,6 +300,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
