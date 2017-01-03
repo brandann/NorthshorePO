@@ -107,47 +107,53 @@ namespace Inventory
 
         private void fillShippingAddressComboBox()
         {
-            shippingcmb.Items.Add("Northshore Sheet Metal, Inc.");
-            shippingcmb.Items.Add("Northclad, Inc.");
-            shippingcmb.Items.Add("Facade Supply");
+            shippingcmb.Items.Add(NAME_NORTHSHORE);
+            shippingcmb.Items.Add(NAME_NORTHCLAD);
+            shippingcmb.Items.Add(NAME_FACADE);
+			shippingcmb.Items.Add(NAME_HAWAII);
 
-            shippingcmb.Items.Add("Northshore Sheet Metal, Inc. Shop 2");
-            shippingcmb.Items.Add("Northclad, Inc. Shop 2");
-            shippingcmb.Items.Add("Facade Supply Shop 2");
+            shippingcmb.Items.Add(NAME_NORTHSHORE + " Shop 2");
+            shippingcmb.Items.Add(NAME_NORTHCLAD + " Shop 2");
+            shippingcmb.Items.Add(NAME_FACADE + " Shop 2");
 
             shippingcmb.Items.Add("Jobsite Delivery");
 
             shippingcmb.SelectedIndex = 0;
         }
 
-        private void shippingcmb_SelectedIndexChanged(object sender, EventArgs e)
+		private const string NAME_NORTHSHORE = "Northshore Exteriors, Inc.";
+		private const string NAME_NORTHCLAD = "Northclad, Inc.";
+		private const string NAME_FACADE = "Facade Supply";
+		private const string NAME_HAWAII = "Northshore Exteriors, Inc. (HI)";
+
+		private void shippingcmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (shippingcmb.Text == "Northshore Sheet Metal, Inc.")
+            if (shippingcmb.Text == NAME_NORTHSHORE)
             {
                 address1txt.Text = "11831 Beverly Park RD. Bldg C.";
                 address2txt.Text = "Everett, WA 98204";
             }
-            else if (shippingcmb.Text == "Northclad, Inc.")
+            else if (shippingcmb.Text == NAME_NORTHCLAD)
             {
                 address1txt.Text = "11831 Beverly Park RD. Bldg C.";
                 address2txt.Text = "Everett, WA 98204";
             }
-            else if (shippingcmb.Text == "Facade Supply")
+            else if (shippingcmb.Text == NAME_FACADE)
             {
                 address1txt.Text = "11831 Beverly Park RD. Bldg C.";
                 address2txt.Text = "Everett, WA 98204";
             }
-            else if (shippingcmb.Text == "Northshore Sheet Metal, Inc. Shop 2")
+            else if (shippingcmb.Text == NAME_NORTHSHORE + " Shop 2")
             {
                 address1txt.Text = "2822 119th Street SW";
                 address2txt.Text = "Everett, WA 98204";
             }
-            else if (shippingcmb.Text == "Northclad, Inc. Shop 2")
+            else if (shippingcmb.Text == NAME_NORTHCLAD + " Shop 2")
             {
                 address1txt.Text = "2822 119th Street SW";
                 address2txt.Text = "Everett, WA 98204";
             }
-            else if (shippingcmb.Text == "Facade Supply Shop 2")
+            else if (shippingcmb.Text == NAME_FACADE + " Shop 2")
             {
                 address1txt.Text = "2822 119th Street SW";
                 address2txt.Text = "Everett, WA 98204";
@@ -157,6 +163,11 @@ namespace Inventory
                 address1txt.Text = "";
                 address2txt.Text = "";
             }
+			else if (shippingcmb.Text == NAME_HAWAII)
+			{
+				address1txt.Text = "1714 Homerule STR";
+				address2txt.Text = "Honolulu, HI 96819";
+			}
         }
 
         private POInformation MakePOInformation()
