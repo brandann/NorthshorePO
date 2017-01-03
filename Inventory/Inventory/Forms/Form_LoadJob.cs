@@ -51,7 +51,7 @@ namespace Inventory
             }
 
             string[] closedfolders;
-            string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - Facade Supply\1. Facade CLOSED jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
+            string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - Facade Supply\1 - Facade CLOSED jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
             for (int i = 0; i < closedfolderyears.Length; i++)
             {
                 closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
