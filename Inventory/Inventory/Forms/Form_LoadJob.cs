@@ -51,20 +51,25 @@ namespace Inventory
             }
 
             string[] closedfolders;
-            string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - Facade Supply\1 - Facade CLOSED jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
-            for (int i = 0; i < closedfolderyears.Length; i++)
-            {
-                closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
-                for (int j = 0; j < closedfolders.Length; j++)
-                {
-                    Job job = new Job();
-                    job.name = closedfolders[j];
-                    job.open = false;
-                    FacadeSupplyjobs.Add(job);
-                }
-            }
+			try
+			{
+				string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - Facade Supply\1 - Facade CLOSED jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
+				for (int i = 0; i < closedfolderyears.Length; i++)
+				{
+					closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
+					for (int j = 0; j < closedfolders.Length; j++)
+					{
+						Job job = new Job();
+						job.name = closedfolders[j];
+						job.open = false;
+						FacadeSupplyjobs.Add(job);
+					}
+				}
+			}
+			catch (Exception e) { }
 
-            CleanJobs(FacadeSupplyjobs);
+
+			CleanJobs(FacadeSupplyjobs);
         }
 
         private void LoadNorthcladJobs()
@@ -81,18 +86,23 @@ namespace Inventory
             }
 
             string[] closedfolders;
-            string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - NORTHCLAD\1-NorthClad Closed Jobs\2016 NorthClad Closed Jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
-            for (int i = 0; i < closedfolderyears.Length; i++)
-            {
-                closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
-                for (int j = 0; j < closedfolders.Length; j++)
-                {
-                    Job job = new Job();
-                    job.name = closedfolders[j];
-                    job.open = false;
-                    northcladjobs.Add(job);
-                }
-            }
+			try
+			{
+				string[] closedfolderyears = System.IO.Directory.GetDirectories(@"O:\Job file - NORTHCLAD\1-NorthClad Closed Jobs\2017 NorthClad Closed Jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
+				for (int i = 0; i < closedfolderyears.Length; i++)
+				{
+					closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
+					for (int j = 0; j < closedfolders.Length; j++)
+					{
+						Job job = new Job();
+						job.name = closedfolders[j];
+						job.open = false;
+						northcladjobs.Add(job);
+					}
+				}
+			}
+			catch (Exception e) { }
+
 
             CleanJobs(northcladjobs);
         }
@@ -111,20 +121,25 @@ namespace Inventory
             }
 
             string[] closedfolders;
-            string[] closedfolderyears = System.IO.Directory.GetDirectories(@"X:\Closed Jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
-            for (int i = 0; i < closedfolderyears.Length; i++)
-            {
-                closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
-                for (int j = 0; j < closedfolders.Length; j++)
-                {
-                    Job job = new Job();
-                    job.name = closedfolders[j];
-                    job.open = false;
-                    northshorejobs.Add(job);
-                }
-            }
+			try
+			{
+				string[] closedfolderyears = System.IO.Directory.GetDirectories(@"X:\Closed Jobs\", "*", System.IO.SearchOption.TopDirectoryOnly);
+				for (int i = 0; i < closedfolderyears.Length; i++)
+				{
+					closedfolders = System.IO.Directory.GetDirectories(closedfolderyears[i] + @"\", "*", System.IO.SearchOption.TopDirectoryOnly);
+					for (int j = 0; j < closedfolders.Length; j++)
+					{
+						Job job = new Job();
+						job.name = closedfolders[j];
+						job.open = false;
+						northshorejobs.Add(job);
+					}
+				}
+			}
+			catch (Exception e) { }
 
-            /*
+
+			/*
             for(int i = 0; i < northshorejobs.Count; i++)
             {
                 string[] removepathfromname = northshorejobs[i].name.Split('\\');
@@ -144,7 +159,7 @@ namespace Inventory
             }
             */
 
-            CleanJobs(northshorejobs);
+			CleanJobs(northshorejobs);
         }
 
         private void CleanJobs(List<Job> jobs)
