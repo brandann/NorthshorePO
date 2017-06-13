@@ -105,35 +105,39 @@ namespace Inventory
         public List<POInformation> GetPurchaseOrders()
         {
             List<POInformation> pos = new List<POInformation>();
-            try
+
+			string sqlquery = "SELECT * FROM PurchaseOrder"; //"SELECT * FROM PurchaseOrder"
+
+			connection.Open();
+			var command = new OleDbCommand(sqlquery, connection);
+			command.Connection = connection;
+			command.CommandText = sqlquery;
+			var reader = command.ExecuteReader();
+			
+			try
             {
-                connection.Open();
-                var command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select * from PurchaseOrder";
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    POInformation p = new POInformation();
-                    p.OrderNumber = reader.GetString(1);
-                    p.Purchaser = reader.GetString(2);
-                    p.Vendor = reader.GetString(3);
-                    p.JobNumber = reader.GetString(4);
-                    p.OrderDate = reader.GetDateTime(5).ToShortDateString();
-                    //p.Total = reader.GetFloat(6);
-                    //p.File = reader.GetString(7);
-                    p.Note = reader.GetString(8);
-                    pos.Add(p);
-                }
-
-                //nums.Sort();
-                reader.Close();
-                connection.Close();
-                return pos;
-            }
-            catch (Exception e) { }
-            finally { }
+				while (reader.Read())
+				{
+					POInformation p = new POInformation();
+					p.OrderNumber = reader.GetString(1);
+					p.Purchaser = reader.GetString(2);
+					p.Vendor = reader.GetString(3);
+					p.JobNumber = reader.GetString(4);
+					p.OrderDate = reader.GetDateTime(5).ToShortDateString();
+					//p.Total = reader.GetFloat(6);
+					//p.File = reader.GetString(7);
+					//p.Note = reader.GetString(8);
+					pos.Add(p);
+				}
+			}
+            catch (Exception e) {
+				Console.WriteLine("error");
+			}
+            finally
+			{
+				reader.Close();
+				connection.Close();
+			}
 
             return pos;
         }
@@ -141,17 +145,19 @@ namespace Inventory
         public List<InventoryOrderItem> GetMaterialItems(string p)
         {
             List<InventoryOrderItem> ioi = new List<InventoryOrderItem>();
-            try
-            {
-                connection.Open();
-                var command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select * from MaterialInventory";
-                var reader = command.ExecuteReader();
 
+			connection.Open();
+			var command = new OleDbCommand();
+			command.Connection = connection;
+			command.CommandText = "select * from MaterialInventory";
+			var reader = command.ExecuteReader();
+
+			try
+            {
                 while (reader.Read())
                 {
-                    if(reader.GetString(1) == p)
+					var ponum = reader.GetString(1);
+                    if(ponum == p)
                     {
                         InventoryOrderItem i = new InventoryOrderItem();
                         // ID
@@ -168,26 +174,36 @@ namespace Inventory
                         i.deliveryDate = reader.GetDateTime(11).ToShortDateString();// ETA
                         // ATA
                         i.quantity = reader.GetString(13);      // QUANTITY
-                        // INVENTORY QUANTITY
-                        i.unit_price = reader.GetFloat(15);     // UNIT COST
-                        i.unit = reader.GetString(16);          // UNIT
-                        i.total = reader.GetFloat(17);          // TOTAL
+																// INVENTORY QUANTITY
+						var decunit = reader.GetDecimal(15);    // -> i.unit_price = reader.GetFloat(15);     // UNIT COST
+						i.unit_price = (float)decunit;
+
+						i.unit = reader.GetString(16);          // UNIT
+
+						var dectotal = reader.GetDecimal(17);   // -> i.total = reader.GetFloat(17);          // TOTAL
+						i.total = (float)dectotal;
+
                         i.color = reader.GetString(18);         // COLOR
                         i.category = reader.GetString(19);      // MATERIAL ITEM
                         i.designation = reader.GetString(20);   // STOCK ITEM
                         i.status = reader.GetString(21);        // STATUS
 
+						if (i.category == "Flat Sheets")
+							i.isMaterial = true;
+						else
+							i.isMaterial = false;
+
                         ioi.Add(i);
                     }
                 }
-
-                //nums.Sort();
-                reader.Close();
-                connection.Close();
-                return ioi;
             }
-            catch (Exception e) { }
-            finally { }
+            catch (Exception e) {
+				Console.WriteLine("error" + e);
+			}
+            finally {
+				reader.Close();
+				connection.Close();
+			}
             return ioi;
         }
 

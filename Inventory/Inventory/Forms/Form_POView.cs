@@ -46,6 +46,7 @@ namespace Inventory
                     Fponumber.Items.Add(mPurchaseOrders[i].OrderNumber);
                 }
             }
+			Fponumber.Sorted = true;
         }
 
         private void Fponumber_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,10 +61,10 @@ namespace Inventory
                     Fpurchaser.Text = mPurchaseOrders[i].Purchaser;
                     Fprojectnumber.Text = mPurchaseOrders[i].JobNumber;
                     Fdate.Text = mPurchaseOrders[i].OrderDate;
-                    //Fshipto1.Text = mPurchaseOrders[i].ShippingInfo.ShippingName;
-                    //Fshipto2.Text = mPurchaseOrders[i].ShippingInfo.ShippingStreet;
-                    //Fshipto3.Text = mPurchaseOrders[i].ShippingInfo.ShippingLocation;
-                    Fdateeta.Text = mPurchaseOrders[i].DeliveryDate;
+					//Fshipto1.Text = mPurchaseOrders[i].ShippingInfo.ShippingName;
+					//Fshipto2.Text = mPurchaseOrders[i].ShippingInfo.ShippingStreet;
+					//Fshipto3.Text = mPurchaseOrders[i].ShippingInfo.ShippingLocation;
+					Fdateeta.Text = mPurchaseOrders[i].DeliveryDate;
                     Fproject.Text = mPurchaseOrders[i].ProjectName;
                     Fattn.Text = mPurchaseOrders[i].Attention;
                     Ftotal.Text = mPurchaseOrders[i].Total.ToString();
@@ -71,10 +72,22 @@ namespace Inventory
 
                     DatabaseController d = new DatabaseController();
                     var ioi = d.GetMaterialItems(mPurchaseOrders[i].OrderNumber);
+					float total = 0;
                     for (int j = 0; j < ioi.Count; j++)
                     {
-                        Flist.Items.Add(ioi[j].description);
+						string s = ioi[j].description;
+						if (ioi[j].isMaterial)
+						{
+							s += "\t|" + ioi[j].quantity + "qty";
+							s += "\t|" + ioi[j].material;
+							s += "\t|" + ioi[j].sheetsize;
+							s += "\t|$" + ioi[j].unit_price + "ea";
+							s += "\t|" + ioi[j].color;
+						}
+						total += ioi[j].total;
+						Flist.Items.Add(s);
                     }
+					Ftotal.Text = "" + total;
                     return;
                 }
             }

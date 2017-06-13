@@ -33,13 +33,13 @@ namespace Inventory
 
         private void FindButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Sorry, Viewing a PO is not yet ready.");
-            return; 
+            //MessageBox.Show("Sorry, Viewing a PO is not yet ready.");
+            //return; 
 
-            /*Form_POView f = new Form_POView();
+            Form_POView f = new Form_POView();
             f.Show();
             f.SetParent(this);
-            this.Hide();*/
+            this.Hide();
         }
 
         private void HelpButton_Click(object sender, EventArgs e)
