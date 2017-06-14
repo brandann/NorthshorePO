@@ -57,6 +57,9 @@
 			this.FSaveButton = new System.Windows.Forms.Button();
 			this.FEditButton = new System.Windows.Forms.Button();
 			this.Fponumber = new System.Windows.Forms.ComboBox();
+			this.buttonSave = new System.Windows.Forms.Button();
+			this.canceleditbutton = new System.Windows.Forms.Button();
+			this.label11 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -278,7 +281,7 @@
 			// 
 			// FCloseButton
 			// 
-			this.FCloseButton.Location = new System.Drawing.Point(84, 692);
+			this.FCloseButton.Location = new System.Drawing.Point(19, 692);
 			this.FCloseButton.Name = "FCloseButton";
 			this.FCloseButton.Size = new System.Drawing.Size(107, 23);
 			this.FCloseButton.TabIndex = 29;
@@ -294,16 +297,18 @@
 			this.FSaveButton.TabIndex = 30;
 			this.FSaveButton.Text = "Save Excel Copy";
 			this.FSaveButton.UseVisualStyleBackColor = true;
+			this.FSaveButton.Click += new System.EventHandler(this.FSaveButton_Click);
 			// 
 			// FEditButton
 			// 
-			this.FEditButton.Enabled = false;
-			this.FEditButton.Location = new System.Drawing.Point(417, 692);
+			this.FEditButton.Location = new System.Drawing.Point(423, 692);
 			this.FEditButton.Name = "FEditButton";
 			this.FEditButton.Size = new System.Drawing.Size(106, 23);
 			this.FEditButton.TabIndex = 31;
 			this.FEditButton.Text = "Edit";
 			this.FEditButton.UseVisualStyleBackColor = true;
+			this.FEditButton.Visible = false;
+			this.FEditButton.Click += new System.EventHandler(this.FEditButton_Click);
 			// 
 			// Fponumber
 			// 
@@ -315,11 +320,46 @@
 			this.Fponumber.TabIndex = 32;
 			this.Fponumber.SelectedIndexChanged += new System.EventHandler(this.Fponumber_SelectedIndexChanged);
 			// 
+			// buttonSave
+			// 
+			this.buttonSave.Location = new System.Drawing.Point(535, 663);
+			this.buttonSave.Name = "buttonSave";
+			this.buttonSave.Size = new System.Drawing.Size(106, 23);
+			this.buttonSave.TabIndex = 33;
+			this.buttonSave.Text = "Save Edits";
+			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Visible = false;
+			// 
+			// canceleditbutton
+			// 
+			this.canceleditbutton.Location = new System.Drawing.Point(423, 663);
+			this.canceleditbutton.Name = "canceleditbutton";
+			this.canceleditbutton.Size = new System.Drawing.Size(106, 23);
+			this.canceleditbutton.TabIndex = 34;
+			this.canceleditbutton.Text = "Cancel Edit";
+			this.canceleditbutton.UseVisualStyleBackColor = true;
+			this.canceleditbutton.Visible = false;
+			this.canceleditbutton.Click += new System.EventHandler(this.canceleditbutton_Click);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label11.ForeColor = System.Drawing.Color.Red;
+			this.label11.Location = new System.Drawing.Point(88, 663);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(223, 13);
+			this.label11.TabIndex = 35;
+			this.label11.Text = "NOTICE: PO EDITING COMING NEXT";
+			// 
 			// Form_POView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(656, 727);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.canceleditbutton);
+			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.Fponumber);
 			this.Controls.Add(this.FEditButton);
 			this.Controls.Add(this.FSaveButton);
@@ -387,5 +427,8 @@
         private System.Windows.Forms.Button FSaveButton;
         private System.Windows.Forms.Button FEditButton;
         private System.Windows.Forms.ComboBox Fponumber;
-    }
+		private System.Windows.Forms.Button buttonSave;
+		private System.Windows.Forms.Button canceleditbutton;
+		private System.Windows.Forms.Label label11;
+	}
 }

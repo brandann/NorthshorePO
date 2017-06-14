@@ -303,37 +303,43 @@ namespace Inventory
         #region private Methods
         private void SetPoNumber()
         {
-            int year = DateTime.Now.Year - 2015;
+            int year = DateTime.Now.Year - 2000;
             int month = DateTime.Now.Month;
             int day = DateTime.Now.Day;
+			int hour = DateTime.Now.Hour;
             int min = DateTime.Now.Minute;
             int sec = DateTime.Now.Second;
 
+			//var NUM = year + month + day + hour + min + sec + 100;
+
             string po = "";
+			//string po = "" + NUM;
 
-            po += (month < 10) ? "0" + month.ToString() : month.ToString();
-            po += (day < 10) ? "0" + day.ToString() : day.ToString();
-            po += (min < 10) ? "0" + min.ToString() : min.ToString();
+			po += (month < 10) ? "0" + month.ToString() : month.ToString();
+			po += (day < 10) ? "0" + day.ToString() : day.ToString();
+			po += (min < 10) ? "0" + min.ToString() : min.ToString();
 
-            PoNumbertxt.Text = mPurchaseOrderNumber = po;
+			PoNumbertxt.Text = mPurchaseOrderNumber = po;
             formatPoNumber();
         }
 
         private void formatPoNumber()
         {
-            if(mInitials == null || mInitials == "")
-            {
-                PoNumbertxt.Text = mPurchaseOrderNumber;
-                return;
-            }
+			if (mInitials == null || mInitials == "")
+			{
+				PoNumbertxt.Text = mPurchaseOrderNumber;
+				return;
+			}
 
-            if (mPurchaseOrderNumber == null || mPurchaseOrderNumber == "")
-            {
-                return;
-            }
+			if (mPurchaseOrderNumber == null || mPurchaseOrderNumber == "")
+			{
+				return;
+			}
 
-            PoNumbertxt.Text = mPurchaseOrderNumber + "" + mInitials;
-        }
+			PoNumbertxt.Text = mPurchaseOrderNumber + "" + mInitials;
+
+			//PoNumbertxt.Text = jobnumbertxt.Text + mPurchaseOrderNumber + initialtxt.Text;
+		}
 
         private void calctotal()
         {
@@ -604,8 +610,9 @@ namespace Inventory
                     saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
                     saveFileDialog1.FilterIndex = 2;
                     saveFileDialog1.RestoreDirectory = true;
+					saveFileDialog1.FileName = PoNumbertxt.Text;
 
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+					if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         System.IO.File.Copy(databasefilename, saveFileDialog1.FileName);
                         System.Diagnostics.Process.Start(saveFileDialog1.FileName);
@@ -821,5 +828,10 @@ namespace Inventory
         {
             SavePO();
         }
-    }
+
+		private void Form_Main_Load(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

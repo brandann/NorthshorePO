@@ -88,7 +88,9 @@ namespace Inventory
 						Flist.Items.Add(s);
                     }
 					Ftotal.Text = "" + total;
-                    return;
+					//FEditButton.Visible = true;
+
+					return;
                 }
             }
         }
@@ -97,5 +99,83 @@ namespace Inventory
         {
             this.Close();
         }
-    }
+
+		private void FEditButton_Click(object sender, EventArgs e)
+		{
+
+
+			EnableEdit();
+		}
+
+		private void EnableEdit()
+		{
+			buttonSave.Visible = true;
+			FSaveButton.Visible = false;
+			FEditButton.Visible = false;
+			canceleditbutton.Visible = true;
+
+			Fponumber.Enabled = false;
+
+			Fproject.Enabled = true;
+			Fvendor.Enabled = true;
+			Fpurchaser.Enabled = true;
+			Fprojectnumber.Enabled = true;
+			Fdate.Enabled = true;
+			Fshipto1.Enabled = true;
+			Fshipto2.Enabled = true;
+			Fshipto3.Enabled = true;
+			Fdateeta.Enabled = true;
+			Fproject.Enabled = true;
+			Fattn.Enabled = true;
+			Ftotal.Enabled = true;
+			Fnote.Enabled = true;
+			Flist.Enabled = true;
+		}
+
+		private void EnableView()
+		{
+			buttonSave.Visible = false;
+			FSaveButton.Visible = true;
+			FEditButton.Visible = true;
+			canceleditbutton.Visible = false;
+
+			Fponumber.Enabled = true;
+
+			Fproject.Enabled = false;
+			Fvendor.Enabled = false;
+			Fpurchaser.Enabled = false;
+			Fprojectnumber.Enabled = false;
+			Fdate.Enabled = false;
+			Fshipto1.Enabled = false;
+			Fshipto2.Enabled = false;
+			Fshipto3.Enabled = false;
+			Fdateeta.Enabled = false;
+			Fproject.Enabled = false;
+			Fattn.Enabled = false;
+			Ftotal.Enabled = false;
+			Fnote.Enabled = false;
+			Flist.Enabled = false;
+		}
+
+		private void canceleditbutton_Click(object sender, EventArgs e)
+		{
+			EnableView();
+		}
+
+		private void FSaveButton_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+			saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
+			saveFileDialog1.FilterIndex = 2;
+			saveFileDialog1.RestoreDirectory = true;
+			saveFileDialog1.FileName = Fponumber.Text;
+
+			if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				//System.IO.File.Copy(mExcelFiles[FList.SelectedIndex], saveFileDialog1.FileName);
+				//System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+			}
+		}
+	}
 }

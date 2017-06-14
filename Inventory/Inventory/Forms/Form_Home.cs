@@ -59,5 +59,37 @@ namespace Inventory
             f.SetParent(this);
             this.Hide();
         }
-    }
+
+		private void MenuHelp_Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\help.docx");
+		}
+
+		private void MenuExit_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void MenuViewDatabase_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Update Excel Inventory by pressing Data>Connections>Refresh All to see the current Inventory data");
+			System.Diagnostics.Process.Start(@"N:\Receiving and current inventory\InventoryData\InventoryView.xlsm");
+		}
+
+		private void MenuViewEditPO_Click(object sender, EventArgs e)
+		{
+			Form_POView f = new Form_POView();
+			f.Show();
+			f.SetParent(this);
+			this.Hide();
+		}
+
+		private void MenuNewPO_Click(object sender, EventArgs e)
+		{
+			Form_Main f = new Form_Main();
+			f.Show();
+			f.SetParent(this);
+			this.Hide();
+		}
+	}
 }

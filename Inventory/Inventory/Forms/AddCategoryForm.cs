@@ -15,15 +15,44 @@ namespace Inventory
     {
         private OleDbConnection connection = new OleDbConnection();
 
-        public AddCategoryForm()
+		private DatabaseController mDatabaseController;
+		private List<string> CategoryItems;
+
+		public AddCategoryForm()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
-        }
+
+			mDatabaseController = new DatabaseController();
+			List<CategoryTable> cats = mDatabaseController.GetCategory();
+			FillCombo(cats);
+		}
+
+		private void FillCombo(List<CategoryTable> cats)
+		{
+			comboBox1.Items.Clear();
+			CategoryItems = new List<string>();
+
+			for (int i = 0; i < cats.Count; i++)
+			{
+				if (!comboBox1.Items.Contains(cats[i].type))
+				{
+					comboBox1.Items.Add(cats[i].type);
+					CategoryItems.Add(cats[i].type);
+				}
+			}
+			comboBox1.Sorted = true;
+		}
 
         private void Addbtn_Click(object sender, EventArgs e)
         {
-            string category = textBox1.Text;
+            string category = comboBox1.Text;
+			if(CategoryItems.Contains(category))
+			{
+				MessageBox.Show("Sorry, The Database already contains that Category.");
+				return;
+			}
+
             bool valid = true;
 
             if (null == category || "" == category) {
