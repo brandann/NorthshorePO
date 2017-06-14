@@ -610,7 +610,7 @@ namespace Inventory
                     saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
                     saveFileDialog1.FilterIndex = 2;
                     saveFileDialog1.RestoreDirectory = true;
-					saveFileDialog1.FileName = PoNumbertxt.Text;
+					saveFileDialog1.FileName = PoNumbertxt.Text + jobnumbertxt.Text + vendorcmb.Text;
 
 					if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
