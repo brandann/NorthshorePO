@@ -46,13 +46,17 @@ namespace Inventory
 
         private void Addbtn_Click(object sender, EventArgs e)
         {
-            string category = comboBox1.Text;
-			if(CategoryItems.Contains(category))
+			string category = comboBox1.Text;
+			List<CategoryTable> cats = mDatabaseController.GetCategory();
+			for (int i = 0; i < cats.Count; i++)
 			{
-				MessageBox.Show("Sorry, The Database already contains that Category.");
-				return;
+				if (cats[i].type == category)
+				{
+					MessageBox.Show("Sorry, The Database already contains that Category.");
+					return;
+				}
 			}
-
+			
             bool valid = true;
 
             if (null == category || "" == category) {
