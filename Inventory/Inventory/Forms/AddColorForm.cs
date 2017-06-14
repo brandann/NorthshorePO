@@ -14,13 +14,13 @@ namespace Inventory
     public partial class AddColorForm : Form
     {
         private OleDbConnection connection = new OleDbConnection();
-        
+        private DatabaseController databaseController = new DatabaseController();
 
-        public AddColorForm()
+		public AddColorForm()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
-            DatabaseController databaseController = new DatabaseController();
+            
             
             // fill vendors
             List<VendorsTable> vendors = databaseController.GetVendors();
@@ -62,20 +62,33 @@ namespace Inventory
             string type = typecmb.Text;
             bool valid = true;
 
-            if (null == color || "" == color) {
+			List<ColorTable> colors = databaseController.GetColor();
+			for(int i = 0; i < colors.Count; i++)
+			{
+				if(colors[i].color == color)
+				{
+					if (colors[i].vendor == vendor)
+					{
+						if (colors[i].type == type)
+						{
+							MessageBox.Show("Color already exists");
+							return;
+						}
+					}
+				}		
+			}
+
+			if (null == color || "" == color) {
                 valid = false;
             }
-
 
             if (null == vendor || "" == vendor) {
                 valid = false;
             }
 
-
             if (null == type || "" == type) {
                 valid = false;
             }
-
 
             if (valid) {
                 Submit(color, vendor, type);
