@@ -66,6 +66,7 @@
 			this.label2.Size = new System.Drawing.Size(44, 13);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Vendor:";
+			this.label2.Visible = false;
 			// 
 			// label3
 			// 
@@ -75,6 +76,7 @@
 			this.label3.Size = new System.Drawing.Size(34, 13);
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Type:";
+			this.label3.Visible = false;
 			// 
 			// vendorcmb
 			// 
@@ -84,6 +86,7 @@
 			this.vendorcmb.Name = "vendorcmb";
 			this.vendorcmb.Size = new System.Drawing.Size(184, 21);
 			this.vendorcmb.TabIndex = 7;
+			this.vendorcmb.Visible = false;
 			// 
 			// typecmb
 			// 
@@ -92,6 +95,7 @@
 			this.typecmb.Name = "typecmb";
 			this.typecmb.Size = new System.Drawing.Size(184, 21);
 			this.typecmb.TabIndex = 8;
+			this.typecmb.Visible = false;
 			// 
 			// colorcmb
 			// 
@@ -100,6 +104,7 @@
 			this.colorcmb.Name = "colorcmb";
 			this.colorcmb.Size = new System.Drawing.Size(184, 21);
 			this.colorcmb.TabIndex = 9;
+			this.colorcmb.SelectedIndexChanged += new System.EventHandler(this.colorcmb_SelectedIndexChanged);
 			// 
 			// removebutton
 			// 
@@ -110,6 +115,7 @@
 			this.removebutton.TabIndex = 12;
 			this.removebutton.Text = "Remove";
 			this.removebutton.UseVisualStyleBackColor = true;
+			this.removebutton.Click += new System.EventHandler(this.removebutton_Click);
 			// 
 			// AddColorForm
 			// 

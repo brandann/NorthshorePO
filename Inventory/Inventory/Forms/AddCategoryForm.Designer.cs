@@ -51,6 +51,7 @@
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(261, 21);
 			this.comboBox1.TabIndex = 2;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
 			// removebutton
 			// 
@@ -61,6 +62,7 @@
 			this.removebutton.TabIndex = 3;
 			this.removebutton.Text = "Remove";
 			this.removebutton.UseVisualStyleBackColor = true;
+			this.removebutton.Click += new System.EventHandler(this.removebutton_Click);
 			// 
 			// AddCategoryForm
 			// 

@@ -47,12 +47,13 @@ namespace Inventory
         private void Addbtn_Click(object sender, EventArgs e)
         {
 			string category = comboBox1.Text;
+			mDatabaseController = new DatabaseController();
 			List<CategoryTable> cats = mDatabaseController.GetCategory();
 			for (int i = 0; i < cats.Count; i++)
 			{
-				if (cats[i].type == category)
+				if (cats[i].type.ToLower() == category.ToLower())
 				{
-					MessageBox.Show("Sorry, The Database already contains that Category.");
+					MessageBox.Show("The database already contains '" + category + "' and blocked the duplicate entry.", "Duplicate Object Blocked");
 					return;
 				}
 			}
@@ -99,5 +100,15 @@ namespace Inventory
         {
             parent = paraentform;
         }
-    }
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			removebutton.Enabled = true;
+		}
+
+		private void removebutton_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+		}
+	}
 }

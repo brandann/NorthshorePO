@@ -15,16 +15,46 @@ namespace Inventory
     {
 
         private OleDbConnection connection = new OleDbConnection();
-        public AddVendorForm()
+
+		private DatabaseController mDatabaseController;
+
+		public AddVendorForm()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=N:\Receiving and current inventory\Inventory.mdb; Persist Security Info=False;";
-        }
 
-        private void okbtn_Click(object sender, EventArgs e)
+			mDatabaseController = new DatabaseController();
+			List<VendorsTable> vends = mDatabaseController.GetVendors();
+			FillCombo(vends);
+		}
+
+		private void FillCombo(List<VendorsTable> vends)
+		{
+			comboBox1.Items.Clear();
+
+			for (int i = 0; i < vends.Count; i++)
+			{
+				if (!comboBox1.Items.Contains(vends[i].vendor))
+					comboBox1.Items.Add(vends[i].vendor);
+			}
+			comboBox1.Sorted = true;
+		}
+
+		private void okbtn_Click(object sender, EventArgs e)
         {
-            string vendor = textBox1.Text;
-            bool valid = true;
+            string vendor = comboBox1.Text;
+
+			mDatabaseController = new DatabaseController();
+			List<VendorsTable> vends = mDatabaseController.GetVendors();
+			for (int i = 0; i < vends.Count; i++)
+			{
+				if (vends[i].vendor.ToLower() == vendor.ToLower())
+				{
+					MessageBox.Show("The database already contains '" + vendor + "' and blocked the duplicate entry.", "Duplicate Object Blocked");
+					return;
+				}
+			}
+			bool valid = true;
 
             if (null == vendor || "" == vendor) {
                 valid = false;
@@ -67,5 +97,15 @@ namespace Inventory
         {
             parent = paraentform;
         }
-    }
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			removebutton.Enabled = true;
+		}
+
+		private void removebutton_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+		}
+	}
 }

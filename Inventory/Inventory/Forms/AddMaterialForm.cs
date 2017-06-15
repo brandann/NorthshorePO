@@ -50,12 +50,13 @@ namespace Inventory
             string width = TextWidth.Text;
             string height = TextHeight.Text;
 
+			mDatabaseController = new DatabaseController();
 			List<MaterialTable> mats = mDatabaseController.GetMaterial();
 			for (int i = 0; i < mats.Count; i++)
 			{
-				if (mats[i].material_type == type)
+				if (mats[i].material_type.ToLower() == type.ToLower())
 				{
-					MessageBox.Show("Sorry, This material is already added to the database");
+					MessageBox.Show("The database already contains '" + type + "' and blocked the duplicate entry.", "Duplicate Object Blocked");
 					return;
 				}
 			}
@@ -103,6 +104,13 @@ namespace Inventory
 					TextHeight.Text = mats[i].height;
 				}
 			}
+
+			removebutton.Enabled = true;
+		}
+
+		private void removebutton_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
 		}
 	}
 }

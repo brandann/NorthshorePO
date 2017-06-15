@@ -119,6 +119,7 @@
 			this.removebutton.TabIndex = 11;
 			this.removebutton.Text = "Remove";
 			this.removebutton.UseVisualStyleBackColor = true;
+			this.removebutton.Click += new System.EventHandler(this.removebutton_Click);
 			// 
 			// comboBox1
 			// 

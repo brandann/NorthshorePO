@@ -11,10 +11,11 @@ using System.Data.OleDb;
 
 namespace Inventory
 {
+	
     public partial class AddColorForm : Form
     {
         private OleDbConnection connection = new OleDbConnection();
-        private DatabaseController databaseController = new DatabaseController();
+        private DatabaseController mDatabaseController = new DatabaseController();
 
 		public AddColorForm()
         {
@@ -23,14 +24,14 @@ namespace Inventory
             
             
             // fill vendors
-            List<VendorsTable> vendors = databaseController.GetVendors();
+            List<VendorsTable> vendors = mDatabaseController.GetVendors();
             for (int i = 0; i < vendors.Count; i++)
             {
                 vendorcmb.Items.Add(vendors[i].vendor);
             }
 
             // fill colors
-            List<ColorTable> colors = databaseController.GetColor();
+            List<ColorTable> colors = mDatabaseController.GetColor();
             List<string> ColorList = new List<string>();
             List<string> TypeList = new List<string>();
             for (int i = 0; i < colors.Count; i++)
@@ -57,15 +58,20 @@ namespace Inventory
 
         private void submitbtn_Click(object sender, EventArgs e)
         {
-            string color = colorcmb.Text;
-            string vendor = vendorcmb.Text;
-            string type = typecmb.Text;
-            bool valid = true;
+			SubmitButton_New();
+        }
 
-			List<ColorTable> colors = databaseController.GetColor();
-			for(int i = 0; i < colors.Count; i++)
+		private void SubmitButton_Old()
+		{
+			string color = colorcmb.Text;
+			string vendor = vendorcmb.Text;
+			string type = typecmb.Text;
+			bool valid = true;
+
+			List<ColorTable> colors = mDatabaseController.GetColor();
+			for (int i = 0; i < colors.Count; i++)
 			{
-				if(colors[i].color == color)
+				if (colors[i].color == color)
 				{
 					if (colors[i].vendor == vendor)
 					{
@@ -75,29 +81,58 @@ namespace Inventory
 							return;
 						}
 					}
-				}		
+				}
 			}
 
-			if (null == color || "" == color) {
-                valid = false;
-            }
+			if (null == color || "" == color)
+				valid = false;
 
-            if (null == vendor || "" == vendor) {
-                valid = false;
-            }
+			if (null == vendor || "" == vendor)
+				valid = false;
 
-            if (null == type || "" == type) {
-                valid = false;
-            }
+			if (null == type || "" == type)
+				valid = false;
 
-            if (valid) {
-                Submit(color, vendor, type);
-                this.Close();
-            }
-            else {
-                MessageBox.Show("Data Error");
-            }
-        }
+			if (valid)
+			{
+				Submit(color, vendor, type);
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Data Error");
+			}
+		}
+
+		private void SubmitButton_New()
+		{
+			string color = colorcmb.Text;
+			bool valid = true;
+
+			mDatabaseController = new DatabaseController();
+			List<ColorTable> colors = mDatabaseController.GetColor();
+			for (int i = 0; i < colors.Count; i++)
+			{
+				if (colors[i].color.ToLower() == color.ToLower())
+				{
+					MessageBox.Show("The database already contains '" + color + "' and blocked the duplicate entry.", "Duplicate Object Blocked");
+					return;
+				}
+			}
+
+			if (null == color || "" == color)
+				valid = false;
+
+			if (valid)
+			{
+				Submit(color, "na", "na");
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Data Error");
+			}
+		}
 
         private void Submit(string color, string vendor, string type)
         {
@@ -126,5 +161,15 @@ namespace Inventory
         {
             parent = paraentform;
         }
-    }
+
+		private void colorcmb_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			removebutton.Enabled = true;
+		}
+
+		private void removebutton_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+		}
+	}
 }
