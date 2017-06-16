@@ -345,6 +345,7 @@
 			this.AddNewMaterialButton.TabIndex = 112;
 			this.AddNewMaterialButton.Text = "+";
 			this.AddNewMaterialButton.UseVisualStyleBackColor = true;
+			this.AddNewMaterialButton.Click += new System.EventHandler(this.AddNewMaterialButton_Click);
 			// 
 			// AddNewColorButton
 			// 
@@ -354,6 +355,7 @@
 			this.AddNewColorButton.TabIndex = 114;
 			this.AddNewColorButton.Text = "+";
 			this.AddNewColorButton.UseVisualStyleBackColor = true;
+			this.AddNewColorButton.Click += new System.EventHandler(this.AddNewColorButton_Click);
 			// 
 			// Form_AddMaterial
 			// 

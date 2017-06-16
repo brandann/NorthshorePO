@@ -279,5 +279,5 @@ namespace Inventory
         {
             descriptiontxt.Text = (string) categorycmb.SelectedItem;
         }
-    }
+	}
 }

@@ -208,31 +208,47 @@ namespace Inventory
         }
 
 
-        public List<VendorsTable> GetVendors()
+        public List<VendorsTable> GetVendors(bool unique = true)
         {
-            List<VendorsTable> vendors = new List<VendorsTable>();
-            try
-            {
-                connection.Open();
-                var command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select * from Vendors";
-                var reader = command.ExecuteReader();
+            
+			connection.Open();
+			var command = new OleDbCommand();
+			command.Connection = connection;
+			command.CommandText = "select * from Vendors";
+			var reader = command.ExecuteReader();
 
+			List<string> str = new List<string>();
+
+			try
+            {
                 while (reader.Read())
                 {
-                    VendorsTable vendor = new VendorsTable();
-                    vendor.vendor = reader.GetString(1);
-                    vendors.Add(vendor);
+					var v = reader.GetString(1);
+					if(unique)
+					{
+						if (!str.Contains(v))
+							str.Add(v);
+					}
+					else
+					{
+						str.Add(v);
+					}
                 }
-
-                vendors.Sort();
-                reader.Close();
-                connection.Close();
-                return vendors;
             }
             catch (Exception e) { }
-            finally { }
+            finally {
+				str.Sort();
+				reader.Close();
+				connection.Close();
+			}
+
+			List<VendorsTable> vendors = new List<VendorsTable>();
+			foreach (string s in str)
+			{
+				VendorsTable vendor = new VendorsTable();
+				vendor.vendor = s;
+				vendors.Add(vendor);
+			}
 
             return vendors;
         }

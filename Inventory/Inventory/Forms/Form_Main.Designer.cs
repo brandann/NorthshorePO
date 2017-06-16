@@ -111,6 +111,7 @@
 			this.menuStrip1.Size = new System.Drawing.Size(730, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
+			this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -262,35 +263,35 @@
 			// addCategoryToolStripMenuItem
 			// 
 			this.addCategoryToolStripMenuItem.Name = "addCategoryToolStripMenuItem";
-			this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addCategoryToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.addCategoryToolStripMenuItem.Text = "Edit Category";
 			this.addCategoryToolStripMenuItem.Click += new System.EventHandler(this.addCategoryToolStripMenuItem_Click);
 			// 
 			// addMaterialToolStripMenuItem
 			// 
 			this.addMaterialToolStripMenuItem.Name = "addMaterialToolStripMenuItem";
-			this.addMaterialToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addMaterialToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.addMaterialToolStripMenuItem.Text = "Edit Material";
 			this.addMaterialToolStripMenuItem.Click += new System.EventHandler(this.addMaterialToolStripMenuItem_Click);
 			// 
 			// addGaugeToolStripMenuItem
 			// 
 			this.addGaugeToolStripMenuItem.Name = "addGaugeToolStripMenuItem";
-			this.addGaugeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addGaugeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.addGaugeToolStripMenuItem.Text = "Edit Thickness";
 			this.addGaugeToolStripMenuItem.Click += new System.EventHandler(this.addGaugeToolStripMenuItem_Click);
 			// 
 			// addColorToolStripMenuItem
 			// 
 			this.addColorToolStripMenuItem.Name = "addColorToolStripMenuItem";
-			this.addColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addColorToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.addColorToolStripMenuItem.Text = "Edit Color";
 			this.addColorToolStripMenuItem.Click += new System.EventHandler(this.addColorToolStripMenuItem_Click);
 			// 
 			// addVendorToolStripMenuItem
 			// 
 			this.addVendorToolStripMenuItem.Name = "addVendorToolStripMenuItem";
-			this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
 			this.addVendorToolStripMenuItem.Text = "Edit Vendor";
 			this.addVendorToolStripMenuItem.Click += new System.EventHandler(this.addVendorToolStripMenuItem_Click);
 			// 

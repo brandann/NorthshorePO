@@ -405,5 +405,25 @@ namespace Inventory
         {
             descriptiontxt.Text = buildItem().GetMaterialDescription();
         }
-    }
+
+		private void AddNewMaterialButton_Click(object sender, EventArgs e)
+		{
+			AddMaterialForm form = new AddMaterialForm();
+			form.Show();
+			form.SetParent(this);
+		}
+
+		private void AddNewColorButton_Click(object sender, EventArgs e)
+		{
+			AddColorForm form = new AddColorForm();
+			form.Show();
+			form.SetParent(this);
+		}
+
+		public void UpdateLists()
+		{
+			fillMaterialComboBox();
+			fillColorComboBox();
+		}
+	}
 }

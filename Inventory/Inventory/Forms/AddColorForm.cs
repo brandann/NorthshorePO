@@ -17,6 +17,8 @@ namespace Inventory
         private OleDbConnection connection = new OleDbConnection();
         private DatabaseController mDatabaseController = new DatabaseController();
 
+		Form_AddMaterial MaterialForm;
+
 		public AddColorForm()
         {
             InitializeComponent();
@@ -153,14 +155,25 @@ namespace Inventory
                 MessageBox.Show("Error: " + ex.ToString());
                 connection.Close();
             }
-            parent.UpdateLists();
-        }
+
+			if (null != parent)
+				parent.UpdateLists();
+			else if (null != MaterialForm)
+				MaterialForm.UpdateLists();
+		}
 
         Form_Main parent;
-        public void SetParent(Form_Main paraentform)
-        {
-            parent = paraentform;
-        }
+		public void SetParent(Form_Main paraentform)
+		{
+			parent = paraentform;
+			MaterialForm = null;
+		}
+
+		public void SetParent(Form_AddMaterial materialform)
+		{
+			parent = null;
+			MaterialForm = materialform;
+		}
 
 		private void colorcmb_SelectedIndexChanged(object sender, EventArgs e)
 		{

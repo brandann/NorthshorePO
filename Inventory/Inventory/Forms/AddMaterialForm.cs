@@ -18,6 +18,9 @@ namespace Inventory
 		private DatabaseController mDatabaseController;
 		private List<string> MaterialItems;
 
+		Form_Main parent;
+		Form_AddMaterial MaterialForm;
+
 		public AddMaterialForm()
         {
             InitializeComponent();
@@ -84,14 +87,24 @@ namespace Inventory
                 MessageBox.Show("Error: " + ex.ToString());
                 connection.Close();
             }
-            parent.UpdateLists();
-        }
 
-        Form_Main parent;
+			if (null != parent)
+				parent.UpdateLists();
+			else if (null != MaterialForm)
+				MaterialForm.UpdateLists();
+		}
+
         public void SetParent(Form_Main paraentform)
         {
             parent = paraentform;
+			MaterialForm = null;
         }
+
+		public void SetParent(Form_AddMaterial materialform)
+		{
+			parent = null;
+			MaterialForm = materialform;
+		}
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
