@@ -110,7 +110,25 @@ namespace Inventory
 
 		private void removebutton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+			try
+			{
+				var command = new OleDbCommand();
+				command.Connection = connection;
+				command.CommandText = "DELETE FROM Materials WHERE MATERIAL_TYPE='" + comboBox1.Text + "'";
+
+				connection.Open();
+				command.ExecuteNonQuery();
+
+				connection.Close();
+				MessageBox.Show(comboBox1.Text + " Material Removed");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Removing Material: " + ex.ToString());
+				connection.Close();
+			}
+			parent.UpdateLists();
+			this.Close();
 		}
 	}
 }

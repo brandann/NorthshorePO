@@ -192,7 +192,8 @@ namespace Inventory
             List<VendorsTable> vendors = mDatabaseController.GetVendors();
             for(int i = 0; i < vendors.Count; i++)
             {
-                vendorcmb.Items.Add(vendors[i].vendor);
+				if(!vendorcmb.Items.Contains(vendors[i].vendor))
+					vendorcmb.Items.Add(vendors[i].vendor);
             }
         }
 

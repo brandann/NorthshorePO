@@ -108,7 +108,25 @@ namespace Inventory
 
 		private void removebutton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+			try
+			{
+				var command = new OleDbCommand();
+				command.Connection = connection;
+				command.CommandText = "DELETE FROM Category WHERE TYPE='" + comboBox1.Text + "'";
+
+				connection.Open();
+				command.ExecuteNonQuery();
+
+				connection.Close();
+				MessageBox.Show(comboBox1.Text + " Category Removed");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Removing Category: " + ex.ToString());
+				connection.Close();
+			}
+			parent.UpdateLists();
+			this.Close();
 		}
 	}
 }

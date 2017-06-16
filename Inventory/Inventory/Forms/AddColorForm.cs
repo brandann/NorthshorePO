@@ -169,7 +169,25 @@ namespace Inventory
 
 		private void removebutton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Remove feature not yet implemented", "Not Implemented ");
+			try
+			{
+				var command = new OleDbCommand();
+				command.Connection = connection;
+				command.CommandText = "DELETE FROM Color WHERE COLOR='" + colorcmb.Text + "'";
+
+				connection.Open();
+				command.ExecuteNonQuery();
+
+				connection.Close();
+				MessageBox.Show(colorcmb.Text + " Color Removed");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error Removing Color: " + ex.ToString());
+				connection.Close();
+			}
+			parent.UpdateLists();
+			this.Close();
 		}
 	}
 }
